@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <link rel="stylesheet" href="https://use.typekit.net/xqn1xdu.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mamava Flex</title>
+    </head>
+
+    <body>
+        <header>
+            <img src="/header.png" width="3840" height="245" />
+        </header>
+
+        <main>
+            <section class="hero" id="hero">
+                <video src="https://simple-creature-website-assets.s3.amazonaws.com/mamava/tour_prototype_v3_trim_optimized.mp4" muted></video>
+            </section>
+            <section class="usp-features">
+                <div class="container">
+                    <img src="/usp-features.png" width="3580" height="600" />
+                </div>
+            </section>
+            <section class="features" id="features-section-1">
+                <div id="intro" class="panel panel-1"></div>
+                <div id="access" class="panel panel-2"></div>
+                <div id="assembly" class="panel panel-3"></div>
+                <div id="maintenance" class="panel panel-4"></div>
+                <div id="mobility" class="panel panel-5"></div>
+                <div class="features-pin">
+                    <div class="container">
+                        <div class="features-wrap">
+                            <div class="features-content">
+                                <div class="progress"></div>
+                                <div class="heading">
+                                    <h1>Easy for Everybody</h1>
+                                    <p>Intentionally designed for breastfeeding, built for facilities</p>
+                                </div>
+                                <div class="benefit benefit-1">
+                                    <h2 onClick={clickHandler} data-href="#access">
+                                        <img src="/icon-access.svg" width="30px" height="30px" />
+                                        Access
+                                    </h2>
+                                    <ul>
+                                        <li>Autonomous app-enabled entry for parents</li>
+                                        <li>Streamlined management for facilities</li>
+                                    </ul>
+                                </div>
+                                <div class="benefit benefit-2">
+                                    <h2 onClick={clickHandler} data-href="#assembly">
+                                        <img src="/icon-assembly.svg" width="30px" height="30px" />
+                                        Installation
+                                    </h2>
+                                    <ul>
+                                        <li>Assembles in a few hours</li>
+                                        <li>No permitting or construction disruption</li>
+                                        <li>Professional install service available</li>
+                                    </ul>
+                                </div>
+                                <div class="benefit benefit-3">
+                                    <h2 onClick={clickHandler} data-href="#maintenance">
+                                        <img src="/icon-maintenance.svg" width="30px" height="30px" />
+                                        Maintenance
+                                    </h2>
+                                    <ul>
+                                        <li>Solid surfaces and nonabsorbent materials for simple clean up</li>
+                                        <li>Mamava Service Plans for extra peace of mind</li>
+                                    </ul>
+                                </div>
+                                <div class="benefit benefit-4">
+                                    <h2 onClick={clickHandler} data-href="#mobility">
+                                        <img src="/icon-mobility.svg" width="30px" height="30px" />
+                                        Mobility
+                                    </h2>
+                                    <ul>
+                                        <li>Caster wheels to move the pod as needed</li>
+                                        <li>Disassemble and store pod when not in use</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="features-media">
+                                <div class="media-wrap">
+                                    <img class="media-1" src="/easy-1.jpg" alt="" />
+                                    <img class="media-2" src="/easy-2.jpg" alt="" />
+                                    <img class="media-3" src="/easy-3.jpg" alt="" />
+                                    <img class="media-4" src="/easy-4.jpg" alt="" />
+                                    <img class="media-5" src="/easy-5.jpg" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="benefits">
+                <div class="container">
+                    <img src="/benefits.png" width="3580" height="2098" />
+                </div>
+            </section>
+            <section class="specs">
+                <img src="/specs.png" width="3840" height="2100" />
+            </section>
+            <section class="conclusion">
+                <div class="container">
+                    <img src="/conclusion.png" width="3580" height="1251" />
+                </div>
+            </section>
+            <section class="contact">
+                <div class="container">
+                    <img src="/contact.png" width="3580" height="2252" />
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <img src="/footer.png" width="3840" height="2441" />
+        </footer>
+
+        <script type="module" src="/main.js"></script>
+    </body>
+
+</html>
