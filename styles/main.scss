@@ -220,6 +220,48 @@ section.tour {
         height: calc(100vh - 6.38vw);
         object-fit: cover;
     }
+
+    .time {
+        position: absolute;
+        z-index: 10;
+        top: 20px;
+        right: 20px;
+        font-family: monospace;
+        font-weight: 700;
+        color: #000;
+    }
+
+    .content {
+        position: absolute;
+        inset: 0;
+    }
+
+    .card {
+        position: absolute;
+        left: 6%;
+        top: 50%;
+        width: 50%;
+        min-width: 340px;
+        max-width: 640px;
+        padding: clampValues(20, 30, $sm, $xl) clampValues(30, 50, $sm, $xl);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background-color: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(20px) saturate(2);
+        opacity: 0;
+
+        &.interior-1 {
+            left: auto;
+            right: 6%;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: clampValues(24, 48, $sm, $xl);
+            font-weight: $font-weight-semibold;
+            line-height: 1.2;
+        }
+    }
 }
 
 section.usp-features {
