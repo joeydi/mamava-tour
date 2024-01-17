@@ -1,0 +1,7 @@
+@function vw($px) {
+    @return math.div($px, 1920px) * 100 * 1vw;
+}
+
+@function vwmin($px) {
+    @return min(vw($px), $px);
+}

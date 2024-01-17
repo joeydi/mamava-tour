@@ -1,26 +1,39 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
 export default function initHero(element) {
-    const video = element.querySelector("video");
+    const mask = element.querySelector(".mask");
+    const content = element.querySelector(".content");
 
     gsap.fromTo(
-        video,
+        mask,
         {
-            currentTime: 0,
+            scale: 0.9,
+            borderRadius: 20,
         },
         {
-            currentTime: video.duration,
+            scale: 1,
+            borderRadius: 0,
             ease: "none",
             scrollTrigger: {
                 trigger: element,
-                start: "top top",
-                end: "bottom 50%",
+                start: () => `top ${window.innerWidth * 0.0638}`,
+                end: "+=100%",
                 scrub: true,
             },
         }
     );
+
+    gsap.to(content, {
+        y: -window.innerHeight,
+        ease: "none",
+        scrollTrigger: {
+            trigger: element,
+            start: () => `top ${window.innerWidth * 0.0638}`,
+            end: "+=200%",
+            scrub: true,
+        },
+    });
 }
