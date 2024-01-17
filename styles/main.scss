@@ -29,6 +29,27 @@ img {
     height: auto;
 }
 
+.btn-primary {
+    display: inline-block;
+    padding: 20px 40px;
+    border-radius: 100px;
+    background-color: $navy;
+    color: $white;
+    font-size: clampValues(16, 19, $sm, $xl);
+    font-weight: $font-weight-semibold;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-link {
+    display: inline-block;
+    color: $navy;
+    font-size: clampValues(16, 19, $sm, $xl);
+    font-weight: $font-weight-semibold;
+    text-decoration: none;
+    text-align: center;
+}
+
 header {
     position: fixed;
     z-index: 10;
@@ -74,9 +95,6 @@ section.hero {
     left: 0;
     top: 6.38vw;
     width: 100%;
-    // height: calc(100vh - 6.38vw);
-    // height: 200vh;
-    // margin-top: 6.38vw;
 
     .hero-spacer {
         position: relative;
@@ -114,10 +132,74 @@ section.hero {
         bottom: 5%;
         width: 90%;
         height: 90%;
-        border: 1px solid red;
         display: flex;
         align-items: flex-end;
-        padding: 40px;
+        justify-content: space-between;
+        gap: 20px;
+        padding: clampValues(20, 80, $sm, $xl);
+    }
+
+    .hero-heading {
+        text-wrap: balance;
+
+        p {
+            margin: 0;
+            font-size: clampValues(19, 22, $sm, $xl);
+            font-weight: $font-weight-regular;
+            color: $dark-navy;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clampValues(42, 80, $sm, $xl);
+            font-weight: $font-weight-semibold;
+            line-height: 1;
+        }
+
+        h2 {
+            margin: 1rem 0 0;
+            font-size: clampValues(24, 38, $sm, $xl);
+            font-weight: $font-weight-light;
+            line-height: 1.2;
+        }
+    }
+
+    .hero-card {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: clampValues(20, 30, $sm, $xl);
+        width: 50%;
+        min-width: 320px;
+        max-width: 420px;
+        padding: clampValues(20, 30, $sm, $xl) clampValues(30, 50, $sm, $xl);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background-color: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px) saturate(2);
+
+        .dimensions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+
+            img {
+                width: 80px;
+                height: auto;
+            }
+
+            p {
+                font-size: clampValues(16, 20, $sm, $xl);
+                font-weight: $font-weight-regular;
+                color: $dark-navy;
+            }
+        }
+
+        .btn-primary,
+        .btn-link {
+            width: 100%;
+        }
     }
 }
 
@@ -125,7 +207,6 @@ section.tour {
     position: relative;
     z-index: 2;
     height: 1000vh;
-    // padding-top: vw(122.5px);
 
     video {
         position: relative;

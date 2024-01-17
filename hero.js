@@ -5,9 +5,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function initHero(element) {
     const mask = element.querySelector(".mask");
+    const video = element.querySelector("video");
     const content = element.querySelector(".content");
 
-    gsap.fromTo(
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: element,
+            start: () => `top ${window.innerWidth * 0.0638}`,
+            end: "+=100%",
+            scrub: true,
+        },
+    });
+
+    timeline.fromTo(
         mask,
         {
             scale: 0.9,
@@ -17,13 +27,20 @@ export default function initHero(element) {
             scale: 1,
             borderRadius: 0,
             ease: "none",
-            scrollTrigger: {
-                trigger: element,
-                start: () => `top ${window.innerWidth * 0.0638}`,
-                end: "+=100%",
-                scrub: true,
-            },
-        }
+        },
+        0
+    );
+
+    timeline.fromTo(
+        video,
+        {
+            scale: 1.1,
+        },
+        {
+            scale: 1,
+            ease: "none",
+        },
+        0
     );
 
     gsap.to(content, {

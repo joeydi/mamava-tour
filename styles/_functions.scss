@@ -1,7 +1,30 @@
+// Remove the unit of a length
+// @param {Number} $number - Number to remove unit from
+// @return {Number} - Unitless number
+@function strip-unit($number) {
+    @if type-of($number) == "number" and not unitless($number) {
+        @return math.div($number, ($number * 0 + 1));
+    }
+
+    @return $number;
+}
+
 @function vw($px) {
     @return math.div($px, 1920px) * 100 * 1vw;
 }
 
 @function vwmin($px) {
     @return min(vw($px), $px);
+}
+
+@function clampValues($minValue, $maxValue, $minWidth, $maxWidth) {
+    $minValue: strip-unit($minValue);
+    $maxValue: strip-unit($maxValue);
+    $minWidth: strip-unit($minWidth);
+    $maxWidth: strip-unit($maxWidth);
+
+    $slope: math.div(($maxValue - $minValue), ($maxWidth - $minWidth));
+    $yAxisIntersection: -$minWidth * $slope + $minValue;
+
+    @return clamp(#{$minValue}px, #{$yAxisIntersection}px + #{$slope * 100}vw, #{$maxValue}px);
 }
