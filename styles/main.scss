@@ -133,10 +133,16 @@ section.hero {
         width: 90%;
         height: 90%;
         display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: flex-end;
         gap: 20px;
         padding: clampValues(20, 80, $sm, $xl);
+
+        @include md {
+            flex-direction: row;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
     }
 
     .hero-heading {
@@ -170,7 +176,7 @@ section.hero {
         flex-direction: column;
         gap: clampValues(20, 30, $sm, $xl);
         width: 50%;
-        min-width: 320px;
+        min-width: 340px;
         max-width: 420px;
         padding: clampValues(20, 30, $sm, $xl) clampValues(30, 50, $sm, $xl);
         border-radius: 10px;
@@ -185,7 +191,7 @@ section.hero {
             gap: 20px;
 
             img {
-                width: 80px;
+                width: clampValues(50, 80, $sm, $xl);
                 height: auto;
             }
 
