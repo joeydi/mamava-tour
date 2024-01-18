@@ -189,11 +189,11 @@ section.hero {
         width: 50%;
         min-width: 340px;
         max-width: 420px;
-        padding: clampValues(20, 30, $sm, $xl) clampValues(30, 50, $sm, $xl);
+        padding: clampValues(20, 40, $sm, $xl) clampValues(30, 50, $sm, $xl);
         border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        background-color: rgba(255, 255, 255, 0.25);
-        backdrop-filter: blur(10px) saturate(2);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
+        backdrop-filter: blur(20px) saturate(2);
 
         .dimensions {
             display: flex;
@@ -207,9 +207,18 @@ section.hero {
             }
 
             p {
+                margin: 0;
                 font-size: clampValues(16, 20, $sm, $xl);
                 font-weight: $font-weight-regular;
                 color: $dark-navy;
+            }
+
+            a {
+                font-weight: $font-weight-semibold;
+
+                &:active {
+                    color: $navy;
+                }
             }
         }
 
@@ -257,7 +266,7 @@ section.tour {
         max-width: 620px;
         padding: clampValues(20, 30, $sm, $xl) clampValues(30, 50, $sm, $xl);
         border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.35);
         background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
         backdrop-filter: blur(20px) saturate(2);
         opacity: 0;
@@ -451,6 +460,7 @@ section.benefits {
 
 section.specs {
     padding: vwmin(100px) 0;
+    border-top: vwmin(100px) solid $white;
     background: $sky url("/blueprint.png") 50% 50% no-repeat;
     background-size: cover;
 
