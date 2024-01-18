@@ -247,7 +247,7 @@ section.tour {
         padding: clampValues(20, 30, $sm, $xl) clampValues(30, 50, $sm, $xl);
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.5);
-        background-color: rgba(255, 255, 255, 0.35);
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
         backdrop-filter: blur(20px) saturate(2);
         opacity: 0;
         overflow: hidden;
@@ -292,7 +292,7 @@ section.features {
         // scroll-snap-align: start;
         height: 100vh;
         pointer-events: none;
-        // outline: 1px solid red;
+        border: 1px solid red;
     }
 
     h1 {
@@ -362,9 +362,10 @@ section.features {
             transform-origin: 0 0;
             position: absolute;
             left: vwmin(100px);
-            top: vw(90px);
+            top: vw(100px);
             width: 4px;
-            height: vwmin(200px);
+            // height: vwmin(200px);
+            height: 100px;
             background-color: $cyan;
         }
 
@@ -373,13 +374,14 @@ section.features {
         }
 
         .benefit {
-            margin-bottom: vwmin(10px);
+            margin-bottom: vwmin(30px);
 
             h2 {
                 display: flex;
                 align-items: center;
                 gap: 20px;
-                margin-bottom: vwmin(30px);
+                // margin-bottom: vwmin(30px);
+                margin-bottom: 0;
 
                 img {
                     display: block;
@@ -411,6 +413,14 @@ section.features {
                     height: 30px;
                     margin-top: -2px;
                     background: url("/icon-checkmark.svg") 50% 50% no-repeat;
+                }
+
+                &:first-child {
+                    padding-top: 20px;
+                }
+
+                &:last-child {
+                    padding-bottom: 0;
                 }
             }
         }

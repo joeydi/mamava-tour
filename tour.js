@@ -240,4 +240,14 @@ export default function initTour(element) {
         start: () => `top ${window.innerWidth * 0.0638}`,
         end: "bottom top",
     });
+
+    gsap.to(video, {
+        yPercent: -50,
+        scrollTrigger: {
+            trigger: element,
+            start: "bottom bottom",
+            end: "bottom top",
+            scrub: true,
+        },
+    });
 }

@@ -5,22 +5,46 @@ import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function initFeatures(element) {
-    gsap.set(element.querySelectorAll(".media-wrap .media-2, .media-wrap .media-3, .media-wrap .media-4, .media-wrap .media-5"), {
-        yPercent: 100,
-        scale: 1.5,
+    const pin = element.querySelectorAll(".features-pin");
+    const progress = element.querySelector(".progress");
+    const progressRect = progress.getBoundingClientRect();
+    const panels = element.querySelectorAll(".panel");
+    const images = element.querySelectorAll(".media-wrap img:not(:first-child)");
+    const lists = element.querySelectorAll(".benefit ul");
+    const contents = element.querySelectorAll(".heading, .benefit");
+    const contentRects = Array.from(contents).map((el) => {
+        return el.getBoundingClientRect();
     });
 
-    gsap.set(element.querySelectorAll(".benefit ul"), {
-        height: 0,
+    gsap.set(
+        images,
+        {
+            yPercent: 100,
+            scale: 1.5,
+        },
+        0
+    );
+
+    gsap.set(
+        lists,
+        {
+            height: 0,
+        },
+        0
+    );
+
+    const contentHeadings = element.querySelectorAll(".features-content h1, .features-content h2");
+    const contentHeadingRects = Array.from(contentHeadings).map((el) => {
+        return el.getBoundingClientRect();
     });
 
     const timeline = gsap.timeline({
         scrollTrigger: {
-            // markers: true,
+            markers: true,
             trigger: element,
-            start: "top top+=1",
-            end: "+=400.1%",
-            pin: element.querySelectorAll(".features-pin"),
+            start: "top top",
+            end: `+=${(panels.length - 1) * 100}%`,
+            pin: pin,
             scrub: 1,
             onEnter: function () {
                 gsap.set("html", {
@@ -45,163 +69,69 @@ export default function initFeatures(element) {
         },
     });
 
-    timeline.to(
-        element.querySelectorAll(".media-wrap .media-2"),
+    timeline.set(
+        progress,
         {
-            yPercent: 0,
-            scale: 1,
-            ease: "none",
-            duration: 1,
+            scaleY: contentRects[0].height / 100,
         },
         0
     );
 
-    timeline.to(
-        element.querySelectorAll(".benefit-1 ul"),
-        {
-            height: "auto",
-            ease: "none",
-            duration: 0.5,
-        },
-        0
-    );
+    panels.forEach((el, i) => {
+        // Skip the last panel
+        if (i === panels.length - 1) {
+            return;
+        }
 
-    timeline.to(
-        element.querySelectorAll(".progress"),
-        {
-            yPercent: 122,
-            scaleY: 0.95,
-            ease: "power2.out",
-            duration: 1,
-        },
-        0
-    );
+        timeline.to(
+            images[i],
+            {
+                yPercent: 0,
+                scale: 1,
+                ease: "none",
+                duration: 1,
+            },
+            i
+        );
 
-    timeline.to(
-        element.querySelectorAll(".media-wrap .media-3"),
-        {
-            yPercent: 0,
-            scale: 1,
-            ease: "none",
-            duration: 1,
-        },
-        1
-    );
+        if (i > 0) {
+            timeline.to(
+                lists[i - 1],
+                {
+                    height: 0,
+                    ease: "none",
+                    duration: 0.5,
+                },
+                i
+            );
+        }
 
-    timeline.to(
-        element.querySelectorAll(".benefit-1 ul"),
-        {
-            height: 0,
-            ease: "none",
-            duration: 0.5,
-        },
-        1
-    );
+        timeline.to(
+            lists[i],
+            {
+                height: "auto",
+                ease: "none",
+                duration: 0.5,
+            },
+            i
+        );
 
-    timeline.to(
-        element.querySelectorAll(".benefit-2 ul"),
-        {
-            height: "auto",
-            ease: "none",
-            duration: 0.5,
-        },
-        1
-    );
-
-    timeline.to(
-        element.querySelectorAll(".progress"),
-        {
-            yPercent: 156,
-            scaleY: 1.25,
-            ease: "power2.out",
-            duration: 1,
-        },
-        1
-    );
-
-    timeline.to(
-        element.querySelectorAll(".media-wrap .media-4"),
-        {
-            yPercent: 0,
-            scale: 1,
-            ease: "none",
-            duration: 1,
-        },
-        2
-    );
-
-    timeline.to(
-        element.querySelectorAll(".benefit-2 ul"),
-        {
-            height: 0,
-            ease: "none",
-            duration: 0.5,
-        },
-        2
-    );
-
-    timeline.to(
-        element.querySelectorAll(".benefit-3 ul"),
-        {
-            height: "auto",
-            ease: "none",
-            duration: 0.5,
-        },
-        2
-    );
-
-    timeline.to(
-        element.querySelectorAll(".progress"),
-        {
-            yPercent: 195,
-            scaleY: 1,
-            ease: "power2.out",
-            duration: 1,
-        },
-        2
-    );
-
-    timeline.to(
-        element.querySelectorAll(".media-wrap .media-5"),
-        {
-            yPercent: 0,
-            scale: 1,
-            ease: "none",
-            duration: 1,
-        },
-        3
-    );
-
-    timeline.to(
-        element.querySelectorAll(".benefit-3 ul"),
-        {
-            height: 0,
-            ease: "none",
-            duration: 0.5,
-        },
-        3
-    );
-
-    timeline.to(
-        element.querySelectorAll(".benefit-4 ul"),
-        {
-            height: "auto",
-            ease: "none",
-            duration: 0.5,
-        },
-        3
-    );
-
-    timeline.to(
-        element.querySelectorAll(".progress"),
-        {
-            yPercent: 230,
-            scaleY: 1,
-            ease: "power2.out",
-            duration: 1,
-        },
-        3
-    );
+        timeline.to(
+            progress,
+            {
+                y: () => {
+                    return contentHeadingRects[i + 1].y - progressRect.y + 10;
+                },
+                scaleY: () => {
+                    console.log(i, contentRects[i + 1].height);
+                    return contentRects[i + 1].height / 100;
+                },
+                ease: "power2.out",
+                duration: 1,
+            },
+            i
+        );
+    });
 
     timeline.set("html", {
         "scroll-snap-type": "none",

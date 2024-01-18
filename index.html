@@ -41,7 +41,7 @@
             <section class="tour" id="tour">
                 <div class="pin">
                     <p class="time">0</p>
-                    <video src="https://simple-creature-website-assets.s3.amazonaws.com/mamava/tour_v1_k1.mp4" muted></video>
+                    <video src="https://simple-creature-website-assets.s3.amazonaws.com/mamava/tour_v1_k1.mp4" muted preload="auto"></video>
                     <div class="content">
                         <div class="card exterior">
                             <h2>An all-in-one lactation space designed for workspaces and public places</h2>
@@ -119,7 +119,7 @@
                                     </h2>
                                     <ul>
                                         <li>Caster wheels to move the pod as needed</li>
-                                        <li>Disassemble and store pod when not in use</li>
+                                        <li>Relocate or store as needed</li>
                                     </ul>
                                 </div>
                             </div>
@@ -136,9 +136,64 @@
                     </div>
                 </div>
             </section>
-            <section class="benefits">
-                <div class="container">
-                    <img src="/benefits.png" width="3580" height="2098" />
+            <section class="features" id="features-section-2">
+                <div id="intro" class="panel panel-1"></div>
+                <div id="flexible" class="panel panel-2"></div>
+                <div id="comfortable" class="panel panel-3"></div>
+                <div id="discreet" class="panel panel-4"></div>
+                <div class="features-pin">
+                    <div class="container">
+                        <div class="features-wrap">
+                            <div class="features-content">
+                                <div class="progress"></div>
+                                <div class="heading">
+                                    <h1>Make Space in Any Room</h1>
+                                    <p>Lactation accommodation fully furnished with everything breastfeeding parents need</p>
+                                </div>
+                                <div class="benefit benefit-1">
+                                    <h2 onClick={clickHandler} data-href="#flexible">
+                                        <img src="/icon-flexible.svg" width="30px" height="30px" />
+                                        Flexible
+                                    </h2>
+                                    <ul>
+                                        <li>Suitable for workplaces or public spaces</li>
+                                        <li>Versatile interior with space for additional seating, compact fridge, or storage</li>
+                                    </ul>
+                                </div>
+                                <div class="benefit benefit-2">
+                                    <h2 onClick={clickHandler} data-href="#comfortable">
+                                        <img src="/icon-comfortable.svg" width="30px" height="30px" />
+                                        Comfortable
+                                    </h2>
+                                    <ul>
+                                        <li>Signature interior design creates calm and uplift</li>
+                                        <li>Contoured ergonomic seat for pumping or nursing</li>
+                                        <li>Conveniently placed shelf and outlets for breast pump</li>
+                                        <li>Occupancy-activated indirect lighting</li>
+                                    </ul>
+                                </div>
+                                <div class="benefit benefit-3">
+                                    <h2 onClick={clickHandler} data-href="#discreet">
+                                        <img src="/icon-discreet.svg" width="30px" height="30px" />
+                                        Discreet
+                                    </h2>
+                                    <ul>
+                                        <li>Blends beautifully into any space</li>
+                                        <li>Deadbolt with exterior occupancy indicator ensures privacy</li>
+                                        <li>Built-in fan for fresh air exchange and white noise</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="features-media">
+                                <div class="media-wrap">
+                                    <img class="media-1" src="/easy-1.jpg" alt="" />
+                                    <img class="media-2" src="/easy-2.jpg" alt="" />
+                                    <img class="media-3" src="/easy-3.jpg" alt="" />
+                                    <img class="media-4" src="/easy-4.jpg" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             <section class="specs">
