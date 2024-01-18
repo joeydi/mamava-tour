@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "gsap": "npm:@gsap/shockingly@^3.12.4",
-    "sass": "^1.69.7"
+    "sass": "^1.69.7",
+    "swiper": "^11.0.5"
   }
 }
