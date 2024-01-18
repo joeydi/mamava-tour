@@ -15,6 +15,7 @@ export default function initFeatures(element) {
     const contentRects = Array.from(contents).map((el) => {
         return el.getBoundingClientRect();
     });
+    const scrollTriggers = element.querySelectorAll("[data-scroll-target]");
 
     gsap.set(
         images,
@@ -40,31 +41,16 @@ export default function initFeatures(element) {
 
     const timeline = gsap.timeline({
         scrollTrigger: {
-            markers: true,
+            // markers: true,
             trigger: element,
             start: "top top",
             end: `+=${(panels.length - 1) * 100}%`,
             pin: pin,
             scrub: 1,
-            onEnter: function () {
-                gsap.set("html", {
-                    "scroll-snap-type": "y mandatory",
-                });
-            },
-            onEnterBack: function () {
-                gsap.set("html", {
-                    "scroll-snap-type": "y mandatory",
-                });
-            },
-            onLeave: function () {
-                gsap.set("html", {
-                    "scroll-snap-type": "none",
-                });
-            },
-            onLeaveBack: function () {
-                gsap.set("html", {
-                    "scroll-snap-type": "none",
-                });
+            snap: {
+                snapTo: "labels",
+                duration: 1,
+                delay: 0,
             },
         },
     });
@@ -78,6 +64,9 @@ export default function initFeatures(element) {
     );
 
     panels.forEach((el, i) => {
+        const label = el.id ?? "start";
+        timeline.addLabel(label, i);
+
         // Skip the last panel
         if (i === panels.length - 1) {
             return;
@@ -123,7 +112,6 @@ export default function initFeatures(element) {
                     return contentHeadingRects[i + 1].y - progressRect.y + 10;
                 },
                 scaleY: () => {
-                    console.log(i, contentRects[i + 1].height);
                     return contentRects[i + 1].height / 100;
                 },
                 ease: "power2.out",
@@ -133,7 +121,16 @@ export default function initFeatures(element) {
         );
     });
 
-    timeline.set("html", {
-        "scroll-snap-type": "none",
+    // Add click handlers to scroll timeline from [data-scroll-target] to associated timeline label
+    scrollTriggers.forEach((el) => {
+        el.addEventListener("click", () => {
+            const target = el.dataset.scrollTarget;
+            gsap.to(window, {
+                scrollTo: {
+                    y: timeline.scrollTrigger.labelToScroll(target),
+                    autoKill: true,
+                },
+            });
+        });
     });
 }

@@ -4,17 +4,16 @@
 @import "functions";
 @import "mixins";
 
+html {
+    scroll-behavior: auto;
+}
+
 html,
 body {
     height: 100%;
     margin: 0;
     font-family: "proxima-soft", sans-serif;
     color: $navy;
-}
-
-html {
-    scroll-behavior: auto;
-    scroll-snap-type: y mandatory;
 }
 
 *,
@@ -289,10 +288,8 @@ section.features {
     position: relative;
 
     .panel {
-        // scroll-snap-align: start;
         height: 100vh;
         pointer-events: none;
-        border: 1px solid red;
     }
 
     h1 {
