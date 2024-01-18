@@ -5,12 +5,18 @@ import "swiper/css";
 export default function initSpecs(element) {
     const navSwiperEl = element.querySelector(".swiper.nav");
     const navButtons = navSwiperEl.querySelectorAll("button");
-    const navSwiper = new Swiper(navSwiperEl, {
+
+    new Swiper(navSwiperEl, {
         centeredSlides: true,
         centeredSlidesBounds: true,
         slidesPerView: "auto",
-        spaceBetween: 30,
+        spaceBetween: 20,
         slideToClickedSlide: true,
+        breakpoints: {
+            768: {
+                spaceBetween: 30,
+            },
+        },
     });
 
     const updateNav = (index) => {
@@ -22,7 +28,7 @@ export default function initSpecs(element) {
     const cardsSwiper = new Swiper(cardsSwiperEl, {
         modules: [Keyboard, Mousewheel],
         slidesPerView: "auto",
-        spaceBetween: 30,
+        spaceBetween: 20,
         centeredSlides: true,
         centeredSlidesBounds: true,
         keyboard: true,
@@ -31,6 +37,11 @@ export default function initSpecs(element) {
         },
         slideToClickedSlide: true,
         watchSlidesProgress: true,
+        breakpoints: {
+            768: {
+                spaceBetween: 30,
+            },
+        },
         on: {
             slideChange: (swiper) => {
                 updateNav(swiper.activeIndex);

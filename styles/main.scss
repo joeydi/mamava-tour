@@ -32,7 +32,7 @@ img {
 h1 {
     margin: 0 0 0.166em;
     font-weight: $font-weight-semibold;
-    font-size: clampValues(30, 60, $sm, $xl);
+    font-size: clampValues(36, 60, $sm, $xl);
     line-height: 1;
 }
 
@@ -512,7 +512,7 @@ section.specs {
 
             button {
                 cursor: pointer;
-                min-width: 200px;
+                min-width: clampValues(120, 200, $md, $xl);
                 padding: 10px 20px;
                 border-radius: 20px;
                 border: 1px solid rgba(1, 21, 128, 0.2);
