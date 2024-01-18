@@ -326,8 +326,7 @@ section.features {
     }
 
     .features-wrap {
-        position: absolute;
-        left: 0;
+        position: relative;
         top: calc(vw(125px) + 40px);
         display: flex;
         width: 100%;
