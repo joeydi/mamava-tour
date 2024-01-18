@@ -194,7 +194,7 @@ export default function initTour(element) {
         mobility,
         {
             opacity: 1,
-            y: () => window.innerHeight / -4,
+            y: () => window.innerHeight / -5,
             duration: 1,
             ease: "power4.out",
         },
@@ -216,7 +216,7 @@ export default function initTour(element) {
     timeline.to(
         mobility,
         {
-            y: () => window.innerHeight / -1.5,
+            y: () => window.innerHeight / -1.4,
             duration: 2,
             ease: "power4.inOut",
         },
