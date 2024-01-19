@@ -175,6 +175,7 @@ section.hero {
         }
 
         h2 {
+            max-width: 1000px;
             margin: 1rem 0 0;
             font-size: clampValues(24, 38, $sm, $xl);
             font-weight: $font-weight-light;
@@ -532,7 +533,13 @@ section.specs {
                 line-height: 20px;
                 font-weight: $font-weight-semibold;
                 color: $navy;
-                transition: background-color 0.35s, color 0.35s;
+                transition: background-color 0.35s, color 0.35s, box-shadow 0.35s;
+
+                &:hover,
+                &:focus-visible {
+                    outline: none;
+                    box-shadow: 0 0 0 4px transparentize($cyan, 0.75);
+                }
 
                 &.active {
                     background-color: $cyan;
