@@ -14,7 +14,7 @@ body {
     height: 100%;
     margin: 0;
     font-family: "proxima-soft", sans-serif;
-    color: $navy;
+    color: $dark-navy;
 }
 
 *,
@@ -34,6 +34,7 @@ h1 {
     font-weight: $font-weight-semibold;
     font-size: clampValues(36, 60, $sm, $xl);
     line-height: 1;
+    color: $navy;
 }
 
 h2 {
@@ -41,6 +42,15 @@ h2 {
     font-weight: $font-weight-semibold;
     font-size: clampValues(24, 30, $sm, $xl);
     line-height: 1;
+    color: $navy;
+}
+
+p {
+    margin-top: 0;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
 }
 
 .btn-primary {
@@ -64,6 +74,52 @@ h2 {
     text-align: center;
 }
 
+.icon-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 360px;
+    margin: 0 auto;
+    font-size: clampValues(18, 22, $sm, $xl);
+    color: $dark-navy;
+
+    .icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    h2 {
+        margin-bottom: 0;
+    }
+}
+
+.content-grid {
+    display: flex;
+    flex-direction: column;
+
+    .content-grid-column {
+        padding: clampValues(40, 60, $sm, $md);
+        border-bottom: 1px solid $cream;
+    }
+
+    @include md {
+        flex-flow: row wrap;
+        justify-content: space-around;
+        gap: clampValues(30, 60, $md, $xl) 0;
+
+        .content-grid-column {
+            width: 33.33%;
+            padding: clampValues(20, 60, $md, $xl);
+            border-left: 1px solid $cream;
+            border-bottom: none;
+
+            &:nth-child(3n + 1) {
+                border-left: none;
+            }
+        }
+    }
+}
+
 header {
     position: fixed;
     z-index: 10;
@@ -82,6 +138,10 @@ section {
     position: relative;
     z-index: 3;
     background-color: white;
+}
+
+section.default-content {
+    padding: clampValues(60, 120, $sm, $xl) 0 0;
 }
 
 .container {
@@ -131,6 +191,7 @@ section.hero {
         height: calc(100vh - 6.38vw);
         overflow: hidden;
         border-radius: 20px;
+        background-color: $cream;
     }
 
     video {
@@ -164,14 +225,14 @@ section.hero {
 
         p {
             margin: 0;
-            font-size: clampValues(19, 22, $sm, $xl);
-            font-weight: $font-weight-regular;
-            color: $dark-navy;
+            font-size: clampValues(36, 48, $sm, $xl);
+            font-weight: $font-weight-light;
+            line-height: 1;
         }
 
         h1 {
-            margin: 0;
-            font-size: clampValues(42, 80, $sm, $xl);
+            margin: 0 0 clampValues(10, 24, $sm, $xl);
+            font-size: clampValues(60, 120, $sm, $xl);
         }
 
         h2 {
@@ -188,8 +249,8 @@ section.hero {
         flex-direction: column;
         gap: clampValues(20, 30, $sm, $xl);
         width: 50%;
-        min-width: 340px;
-        max-width: 420px;
+        min-width: 360px;
+        max-width: 440px;
         padding: clampValues(20, 40, $sm, $xl) clampValues(30, 50, $sm, $xl);
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.35);
@@ -203,7 +264,7 @@ section.hero {
             gap: 20px;
 
             img {
-                width: clampValues(50, 80, $sm, $xl);
+                width: clampValues(70, 100, $sm, $xl);
                 height: auto;
             }
 
@@ -211,7 +272,6 @@ section.hero {
                 margin: 0;
                 font-size: clampValues(16, 20, $sm, $xl);
                 font-weight: $font-weight-regular;
-                color: $dark-navy;
             }
 
             a {
@@ -302,10 +362,6 @@ section.tour {
     }
 }
 
-section.usp-features {
-    padding: vwmin(100px) 0 0;
-}
-
 section.features {
     position: relative;
 
@@ -321,11 +377,6 @@ section.features {
     p {
         margin: 0;
         font-size: clampValues(18, 22, $sm, $xl);
-        color: $dark-navy;
-    }
-
-    li {
-        color: $dark-navy;
     }
 
     .features-pin {
