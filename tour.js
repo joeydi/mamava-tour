@@ -5,6 +5,8 @@ import { SplitText } from "gsap/SplitText";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default function initTour(element) {
+    if (!element) return;
+
     const video = element.querySelector("video");
     const pin = element.querySelector(".pin");
     const time = element.querySelector(".time");

@@ -4,6 +4,8 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function initHero(element) {
+    if (!element) return;
+
     const mask = element.querySelector(".mask");
     const video = element.querySelector("video");
     const content = element.querySelector(".content");

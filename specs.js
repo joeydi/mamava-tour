@@ -3,6 +3,8 @@ import { Keyboard, Mousewheel } from "swiper/modules";
 import "swiper/css";
 
 export default function initSpecs(element) {
+    if (!element) return;
+
     const navSwiperEl = element.querySelector(".swiper.nav");
     const navButtons = navSwiperEl.querySelectorAll("button");
 

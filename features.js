@@ -5,6 +5,8 @@ import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function initFeatures(element) {
+    if (!element) return;
+
     const pin = element.querySelectorAll(".features-pin");
     const progress = element.querySelector(".progress");
     const progressRect = progress.getBoundingClientRect();
