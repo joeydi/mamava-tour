@@ -31,6 +31,7 @@ img {
 
 h1 {
     margin: 0 0 0.166em;
+    text-wrap: balance;
     font-weight: $font-weight-semibold;
     font-size: clampValues(36, 60, $sm, $xl);
     line-height: 1;
@@ -39,6 +40,7 @@ h1 {
 
 h2 {
     margin: 0 0 0.333em;
+    text-wrap: balance;
     font-weight: $font-weight-semibold;
     font-size: clampValues(24, 30, $sm, $xl);
     line-height: 1;
@@ -51,6 +53,46 @@ p {
     &:last-child {
         margin-bottom: 0;
     }
+}
+
+.font-weight-light {
+    font-weight: $font-weight-light;
+}
+
+.font-weight-regular {
+    font-weight: $font-weight-regular;
+}
+
+.font-weight-semibold {
+    font-weight: $font-weight-semibold;
+}
+
+.color-dark-navy {
+    color: $dark-navy;
+}
+
+.color-navy {
+    color: $navy;
+}
+
+.color-sky {
+    color: $sky;
+}
+
+.color-cream {
+    color: $cream;
+}
+
+.color-cyan {
+    color: $cyan;
+}
+
+.color-white {
+    color: $white;
+}
+
+.align-center {
+    text-align: center;
 }
 
 .btn-primary {
@@ -139,8 +181,30 @@ section {
     background-color: white;
 }
 
-section.default-content {
-    padding: clampValues(60, 120, $sm, $xl) 0 0;
+section.section-margin {
+    margin-top: clampValues(60, 120, $sm, $xl);
+    margin-bottom: clampValues(60, 120, $sm, $xl);
+}
+
+section.section-margin-top {
+    margin-top: clampValues(60, 120, $sm, $xl);
+}
+
+section.section-margin-bottom {
+    margin-bottom: clampValues(60, 120, $sm, $xl);
+}
+
+section.section-padding {
+    padding-top: clampValues(60, 120, $sm, $xl);
+    padding-bottom: clampValues(60, 120, $sm, $xl);
+}
+
+section.section-padding-top {
+    padding-top: clampValues(60, 120, $sm, $xl);
+}
+
+section.section-padding-bottom {
+    padding-bottom: clampValues(60, 120, $sm, $xl);
 }
 
 .container {
@@ -321,41 +385,27 @@ section.tour {
         left: 6%;
         top: 50%;
         transform: translateY(-50%);
-        width: 50%;
+        width: 40%;
         min-width: 340px;
-        max-width: 620px;
-        padding: clampValues(20, 30, $sm, $xl) clampValues(30, 50, $sm, $xl);
+        max-width: 440px;
+        padding: clampValues(20, 30, $sm, $xl) clampValues(30, 40, $sm, $xl);
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.35);
         background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
-        backdrop-filter: blur(20px) saturate(2);
+        backdrop-filter: blur(20px) saturate(3);
         opacity: 0;
         overflow: hidden;
 
-        &.access {
-            max-width: 480px;
+        &.exterior {
+            max-width: 500px;
         }
 
         &.interior-1 {
-            left: auto;
-            right: 6%;
-            max-width: 540px;
-        }
-
-        &.interior-2 {
-            max-width: 520px;
-        }
-
-        &.mobility {
-            top: 100%;
-            max-width: 580px;
+            max-width: 480px;
         }
 
         h2 {
             margin: 0;
-            font-size: clampValues(24, 48, $sm, $xl);
-            font-weight: $font-weight-semibold;
-            line-height: 1.2;
             text-wrap: pretty;
         }
     }
@@ -634,14 +684,6 @@ section.specs {
 
     @include lg {
     }
-}
-
-section.conclusion {
-    padding: vwmin(100px) 0;
-}
-
-section.contact {
-    padding: vwmin(100px) 0;
 }
 
 footer {

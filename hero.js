@@ -55,4 +55,14 @@ export default function initHero(element) {
             scrub: true,
         },
     });
+
+    gsap.to(mask, {
+        opacity: 0,
+        scrollTrigger: {
+            trigger: element,
+            start: "bottom top",
+            // end: "+=200%",
+            // scrub: true,
+        },
+    });
 }
