@@ -10,7 +10,7 @@ export default function initTour(element) {
 
     const video = element.querySelector("video");
     const pin = element.querySelector(".pin");
-    const timeLabel = element.querySelector(".time");
+    // const timeLabel = element.querySelector(".time");
     const navPrevious = element.querySelector(".nav .previous");
     const navNext = element.querySelector(".nav .next");
     const navLabel = element.querySelector(".nav .label");
@@ -58,7 +58,7 @@ export default function initTour(element) {
             scrub: true,
             onUpdate: () => {
                 const time = timeline.progress() * timeline.duration();
-                timeLabel.innerText = time.toFixed(1);
+                // timeLabel.innerText = time.toFixed(1);
 
                 const label = getSectionLabel(time);
                 navLabel.innerText = label;
