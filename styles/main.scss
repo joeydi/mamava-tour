@@ -63,6 +63,10 @@ p {
     font-weight: $font-weight-regular;
 }
 
+.font-weight-medium {
+    font-weight: $font-weight-medium;
+}
+
 .font-weight-semibold {
     font-weight: $font-weight-semibold;
 }
@@ -555,13 +559,8 @@ section.features {
     }
 }
 
-section.benefits {
-    padding: vwmin(100px) 0;
-}
-
 section.specs {
-    padding: vwmin(100px) 0;
-    border-top: vwmin(100px) solid $white;
+    border-top: clampValues(60, 100, $sm, $xl) solid $white;
     background: $sky url("/blueprint.png") 50% 50% no-repeat;
     background-size: cover;
 
@@ -683,6 +682,186 @@ section.specs {
     }
 
     @include lg {
+    }
+}
+
+section.contact {
+    .contact-grid {
+        display: flex;
+        flex-direction: column;
+        background-color: $sky;
+        border-radius: 10px;
+        border: 1px solid transparentize($navy, 0.9);
+        overflow: hidden;
+    }
+
+    .contact-content {
+        background-color: $white;
+
+        img {
+            display: block;
+            aspect-ratio: 1.4;
+            object-fit: cover;
+            object-position: 50% 30%;
+        }
+    }
+
+    .contact-heading {
+        position: relative;
+        z-index: 1;
+        margin-bottom: -100px;
+        padding: clampValues(30, 80, $sm, $xl);
+        padding-bottom: 100px;
+        font-size: clampValues(18, 22, $sm, $xl);
+        background: linear-gradient(
+                to bottom,
+                hsl(0, 0%, 100%) 0%,
+                hsla(0, 0%, 100%, 0.987) 8.1%,
+                hsla(0, 0%, 100%, 0.951) 15.5%,
+                hsla(0, 0%, 100%, 0.896) 22.5%,
+                hsla(0, 0%, 100%, 0.825) 29%,
+                hsla(0, 0%, 100%, 0.741) 35.3%,
+                hsla(0, 0%, 100%, 0.648) 41.2%,
+                hsla(0, 0%, 100%, 0.55) 47.1%,
+                hsla(0, 0%, 100%, 0.45) 52.9%,
+                hsla(0, 0%, 100%, 0.352) 58.8%,
+                hsla(0, 0%, 100%, 0.259) 64.7%,
+                hsla(0, 0%, 100%, 0.175) 71%,
+                hsla(0, 0%, 100%, 0.104) 77.5%,
+                hsla(0, 0%, 100%, 0.049) 84.5%,
+                hsla(0, 0%, 100%, 0.013) 91.9%,
+                hsla(0, 0%, 100%, 0) 100%
+            )
+            0 100% no-repeat;
+        background-size: 100% 100px;
+    }
+
+    .contact-form {
+        padding: clampValues(30, 80, $sm, $xl);
+    }
+
+    @include lg {
+        .contact-grid {
+            flex-direction: row;
+        }
+
+        .contact-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+
+            img {
+                aspect-ratio: auto;
+                flex-grow: 1;
+            }
+        }
+
+        .contact-heading {
+            margin-bottom: -160px;
+            padding-bottom: 160px;
+            background-size: 100% 160px;
+        }
+
+        .contact-form {
+            width: 50%;
+        }
+    }
+}
+
+.hbspt-form {
+    max-width: 600px !important;
+    margin: 0 auto !important;
+
+    fieldset {
+        max-width: none !important;
+    }
+
+    .form-columns-2 {
+        display: flex;
+        gap: 20px;
+
+        .field {
+            float: none !important;
+            width: 50% !important;
+        }
+    }
+
+    .field {
+        margin-bottom: 24px;
+    }
+
+    .input,
+    .hs-input {
+        width: 100% !important;
+        margin-right: 0 !important;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: $font-weight-medium;
+        font-size: clampValues(16, 18, $sm, $xl);
+        color: $navy;
+    }
+
+    input,
+    textarea {
+        appearance: none;
+        width: 100%;
+        padding: 10px 15px;
+        border-radius: 6px;
+        border: 1px solid transparentize($navy, 0.8);
+        box-shadow: inset 2px 4px 4px rgba(0, 0, 0, 0.05);
+        font-size: clampValues(16, 18, $sm, $xl);
+        line-height: 30px;
+        color: $dark-navy;
+    }
+
+    textarea {
+        min-height: 120px;
+    }
+
+    select {
+        appearance: none;
+        width: 100%;
+        padding: 10px 40px 10px 15px;
+        border-radius: 6px;
+        border: 1px solid transparentize($navy, 0.8);
+        box-shadow: inset -2px -4px 4px rgba(0, 0, 0, 0.05);
+        background: $white url("/caret.svg") calc(100% - 15px) 50% no-repeat;
+        background-size: 10px auto;
+        font-size: clampValues(16, 18, $sm, $xl);
+        line-height: 30px;
+        color: $dark-navy;
+    }
+
+    .hs-button {
+        display: inline-block;
+        width: auto;
+        min-width: 240px;
+        padding: 20px 40px;
+        border-radius: 100px;
+        background-color: $navy;
+        color: $white;
+        font-family: "proxima-soft", sans-serif;
+        font-size: clampValues(16, 19, $sm, $xl);
+        font-weight: $font-weight-medium;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    .hs-error-msgs {
+        margin: 4px;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    .hs-error-msg {
+        text-wrap: pretty;
+        font-size: 16px;
+        line-height: 1.2;
+        color: $red;
     }
 }
 

@@ -58,11 +58,10 @@ export default function initHero(element) {
 
     gsap.to(mask, {
         opacity: 0,
+        duration: 0,
         scrollTrigger: {
             trigger: element,
             start: "bottom top",
-            // end: "+=200%",
-            // scrub: true,
         },
     });
 }
