@@ -289,9 +289,10 @@ export default function initTour(element) {
     });
 
     const playToLabel = (label) => {
+        const playbackSpeed = 2.75;
         const scrollPosition = timeline.scrollTrigger.labelToScroll(label);
         const scrollDelta = Math.abs(document.documentElement.scrollTop - scrollPosition);
-        const scrollDuration = (scrollDelta / window.innerHeight) * 2;
+        const scrollDuration = (scrollDelta / window.innerHeight) * playbackSpeed;
 
         gsap.to(window, {
             scrollTo: {
