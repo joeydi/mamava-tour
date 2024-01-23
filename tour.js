@@ -62,6 +62,10 @@ export default function initTour(element) {
 
                 const label = getSectionLabel(time);
                 navLabel.innerText = label;
+
+                // Disable prev/next buttons at ends
+                navPrevious.disabled = !timeline.previousLabel();
+                navNext.disabled = !timeline.nextLabel();
             },
         },
     });
