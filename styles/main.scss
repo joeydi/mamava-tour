@@ -413,6 +413,78 @@ section.tour {
             text-wrap: pretty;
         }
     }
+
+    .nav {
+        position: absolute;
+        z-index: 2;
+        left: 50%;
+        bottom: 40px;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 10px 12px;
+        border-radius: 100px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
+        backdrop-filter: blur(20px) saturate(2);
+
+        a,
+        button {
+            position: relative;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(1, 21, 128, 0.2);
+            background-color: $white;
+            text-decoration: none;
+            font-family: "proxima-soft", sans-serif;
+            font-size: clampValues(16, 20, $sm, $xl);
+            font-weight: $font-weight-semibold;
+            line-height: 20px;
+            color: $navy;
+            transition: background-color 0.35s, color 0.35s, box-shadow 0.35s;
+
+            &:hover,
+            &:focus-visible {
+                outline: none;
+                box-shadow: 0 0 0 4px transparentize($cyan, 0.75);
+            }
+
+            &:active {
+                background-color: $cyan;
+                color: $white;
+            }
+        }
+
+        .links {
+            display: flex;
+
+            button:first-child {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            button:last-child {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+
+        .label {
+            display: inline-block;
+            min-width: 120px;
+            padding: 10px 20px;
+            border-top: 1px solid rgba(1, 21, 128, 0.2);
+            border-bottom: 1px solid rgba(1, 21, 128, 0.2);
+            background-color: $white;
+            text-align: center;
+            font-family: "proxima-soft", sans-serif;
+            font-size: clampValues(16, 20, $sm, $xl);
+            font-weight: $font-weight-medium;
+            line-height: 20px;
+        }
+    }
 }
 
 section.features {
