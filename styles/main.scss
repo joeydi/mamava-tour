@@ -23,14 +23,9 @@
         width: 100%;
         padding: 0 !important;
     }
-}
 
-@media screen and (min-width: 800px) {
-    .Index section:first-child:not(.Index-gallery),
-    .Main--page,
-    .Intro,
-    .Main {
-        padding-top: 0;
+    .sqs-layout > .sqs-row {
+        margin: 0;
     }
 }
 
@@ -380,6 +375,7 @@ section.hero {
             }
 
             a {
+                text-decoration: underline;
                 font-weight: $font-weight-semibold;
 
                 &:active {
@@ -646,7 +642,8 @@ section.features {
                     width: 30px;
                     height: 30px;
                     margin-top: -2px;
-                    background: url("/icon-checkmark.svg") 50% 50% no-repeat;
+                    background: url("https://simple-creature-website-assets.s3.amazonaws.com/mamava/icon-checkmark.svg") 50% 50%
+                        no-repeat;
                 }
 
                 &:first-child {
@@ -686,7 +683,7 @@ section.features {
 }
 
 section.specs {
-    background: $sky url("/blueprint.png") 50% 50% no-repeat;
+    background: $sky url("https://simple-creature-website-assets.s3.amazonaws.com/mamava/blueprint.png") 50% 50% no-repeat;
     background-size: cover;
 
     .card {
@@ -902,7 +899,7 @@ section.contact {
     }
 }
 
-.hbspt-form {
+.hbspt-form .hs-form {
     max-width: 600px !important;
     margin: 0 auto !important;
 
@@ -938,7 +935,9 @@ section.contact {
         color: $navy;
     }
 
-    input,
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
     textarea {
         appearance: none;
         width: 100%;
@@ -953,7 +952,7 @@ section.contact {
     }
 
     textarea {
-        min-height: 120px;
+        min-height: 120px !important;
     }
 
     select {
@@ -963,17 +962,19 @@ section.contact {
         border-radius: 6px;
         border: 1px solid transparentize($navy, 0.8);
         box-shadow: inset -2px -4px 4px rgba(0, 0, 0, 0.05);
-        background: $white url("/caret.svg") calc(100% - 15px) 50% no-repeat;
+        background: $white url("https://simple-creature-website-assets.s3.amazonaws.com/mamava/caret.svg") calc(100% - 15px) 50%
+            no-repeat;
         background-size: 10px auto;
         font-size: clampValues(16, 18, $sm, $xl);
         line-height: 30px;
         color: $dark-navy;
     }
 
-    .hs-button {
+    input.hs-button.primary.large {
         display: inline-block;
         width: auto;
         min-width: 240px;
+        margin: 0;
         padding: 20px 40px;
         border-radius: 100px;
         background-color: $navy;
