@@ -13,6 +13,7 @@ export default function initTour(element) {
     // const timeLabel = element.querySelector(".time");
     const navPrevious = element.querySelector(".nav .previous");
     const navNext = element.querySelector(".nav .next");
+    const navSkip = element.querySelector(".nav .skip");
     const navLabel = element.querySelector(".nav .label");
     const exterior = element.querySelector(".exterior");
     const exteriorSplit = new SplitText(exterior.querySelector("h2"), { type: "lines" });
@@ -273,6 +274,8 @@ export default function initTour(element) {
         27
     );
 
+    timeline.addLabel("End");
+
     // Pin the tour
     ScrollTrigger.create({
         trigger: element,
@@ -324,5 +327,18 @@ export default function initTour(element) {
         if (nextTimelineLabel) {
             playToLabel(nextTimelineLabel);
         }
+    });
+
+    navSkip.addEventListener("click", () => {
+        const scrollPosition = timeline.scrollTrigger.labelToScroll("End");
+
+        gsap.to(window, {
+            scrollTo: {
+                y: scrollPosition,
+                autoKill: true,
+            },
+            duration: 1,
+            ease: "expo.out",
+        });
     });
 }
