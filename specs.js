@@ -8,11 +8,9 @@ export default function initSpecs(element) {
     const navSwiperEl = element.querySelector(".swiper.nav");
     const navButtons = navSwiperEl.querySelectorAll("button");
 
-    new Swiper(navSwiperEl, {
-        centeredSlides: true,
-        centeredSlidesBounds: true,
+    const navSwiper = new Swiper(navSwiperEl, {
         slidesPerView: "auto",
-        spaceBetween: 20,
+        spaceBetween: 15,
         slideToClickedSlide: true,
         breakpoints: {
             768: {
@@ -22,6 +20,7 @@ export default function initSpecs(element) {
     });
 
     const updateNav = (index) => {
+        navSwiper.slideTo(index);
         navButtons.forEach((el) => el.classList.remove("active"));
         navButtons[index].classList.add("active");
     };
@@ -29,10 +28,10 @@ export default function initSpecs(element) {
     const cardsSwiperEl = element.querySelector(".swiper.cards");
     const cardsSwiper = new Swiper(cardsSwiperEl, {
         modules: [Keyboard, Mousewheel],
+        autoHeight: true,
         slidesPerView: "auto",
         spaceBetween: 20,
         centeredSlides: true,
-        centeredSlidesBounds: true,
         keyboard: true,
         mousewheel: {
             forceToAxis: true,
@@ -47,9 +46,6 @@ export default function initSpecs(element) {
         on: {
             slideChange: (swiper) => {
                 updateNav(swiper.activeIndex);
-            },
-            reachEnd: (swiper) => {
-                updateNav(swiper.slides.length - 1);
             },
         },
     });
