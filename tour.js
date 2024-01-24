@@ -332,6 +332,11 @@ export default function initTour(element) {
     navSkip.addEventListener("click", () => {
         const scrollPosition = timeline.scrollTrigger.labelToScroll("End");
 
+        window.scrollTo({
+            top: scrollPosition - window.innerHeight / 2,
+            behavior: "instant",
+        });
+
         gsap.to(window, {
             scrollTo: {
                 y: scrollPosition,
