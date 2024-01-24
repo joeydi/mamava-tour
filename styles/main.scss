@@ -4,13 +4,51 @@
 @import "functions";
 @import "mixins";
 
+// Squarespace Overrides
+
+.Index-page-content:has(
+        section#hero,
+        section#tour,
+        section#benefits,
+        section#features-section-1,
+        section#features-section-2,
+        section#specs,
+        section#conclusion,
+        section#contact
+    ) {
+    max-width: none;
+    padding: 0;
+
+    .sqs-block {
+        width: 100%;
+        padding: 0 !important;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .Index section:first-child:not(.Index-gallery),
+    .Main--page,
+    .Intro,
+    .Main {
+        padding-top: 0;
+    }
+}
+
+:root {
+    --header-height: 67px;
+
+    @media (min-width: 1080px) {
+        --header-height: 125px;
+    }
+}
+
 html {
     scroll-behavior: auto;
 }
 
 html,
 body {
-    scroll-padding-top: 6.38vw;
+    scroll-padding-top: var(--header-height);
     height: 100%;
     margin: 0;
     font-family: "proxima-soft", sans-serif;
@@ -234,7 +272,7 @@ section.hero {
     position: relative;
     z-index: 1;
     left: 0;
-    top: 6.38vw;
+    top: var(--header-height);
     width: 100%;
 
     .hero-spacer {
@@ -245,9 +283,9 @@ section.hero {
     .hero-fixed {
         position: fixed;
         left: 0;
-        top: 6.38vw;
+        top: var(--header-height);
         width: 100%;
-        height: calc(100vh - 6.38vw);
+        height: calc(100vh - var(--header-height));
     }
 
     .mask {
@@ -255,7 +293,7 @@ section.hero {
         left: 0;
         top: 0;
         width: 100%;
-        height: calc(100vh - 6.38vw);
+        height: calc(100vh - var(--header-height));
         overflow: hidden;
         border-radius: 20px;
         background-color: $cream;
@@ -365,7 +403,7 @@ section.tour {
     video {
         position: relative;
         width: 100%;
-        height: calc(100vh - 6.38vw);
+        height: calc(100vh - var(--header-height));
         object-fit: cover;
     }
 

@@ -13,7 +13,10 @@ export default function initHero(element) {
     const timeline = gsap.timeline({
         scrollTrigger: {
             trigger: element,
-            start: () => `top ${window.innerWidth * 0.0638}`,
+            start: () => {
+                const headerHeight = getComputedStyle(document.documentElement).getPropertyValue("--header-height");
+                return `top ${headerHeight}`;
+            },
             end: "+=100%",
             scrub: true,
         },
@@ -50,7 +53,10 @@ export default function initHero(element) {
         ease: "none",
         scrollTrigger: {
             trigger: element,
-            start: () => `top ${window.innerWidth * 0.0638}`,
+            start: () => {
+                const headerHeight = getComputedStyle(document.documentElement).getPropertyValue("--header-height");
+                return `top ${headerHeight}`;
+            },
             end: "+=200%",
             scrub: true,
         },

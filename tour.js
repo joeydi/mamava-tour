@@ -280,7 +280,10 @@ export default function initTour(element) {
     ScrollTrigger.create({
         trigger: element,
         pin: pin,
-        start: () => `top ${window.innerWidth * 0.0638}`,
+        start: () => {
+            const headerHeight = getComputedStyle(document.documentElement).getPropertyValue("--header-height");
+            return `top ${headerHeight}`;
+        },
         end: "bottom top",
     });
 
