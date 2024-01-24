@@ -647,7 +647,6 @@ section.features {
 }
 
 section.specs {
-    border-top: clampValues(60, 100, $sm, $xl) solid $white;
     background: $sky url("/blueprint.png") 50% 50% no-repeat;
     background-size: cover;
 
