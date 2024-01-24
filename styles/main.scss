@@ -787,6 +787,7 @@ section.contact {
 
     .contact-content {
         background-color: $white;
+        text-wrap: pretty;
 
         img {
             display: block;
@@ -854,6 +855,9 @@ section.contact {
         }
 
         .contact-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             width: 50%;
         }
     }
@@ -903,6 +907,7 @@ section.contact {
         border-radius: 6px;
         border: 1px solid transparentize($navy, 0.8);
         box-shadow: inset 2px 4px 4px rgba(0, 0, 0, 0.05);
+        font-family: sans-serif;
         font-size: clampValues(16, 18, $sm, $xl);
         line-height: 30px;
         color: $dark-navy;
@@ -952,6 +957,18 @@ section.contact {
         font-size: 16px;
         line-height: 1.2;
         color: $red;
+    }
+
+    .submitted-message {
+        max-width: 480px;
+        text-wrap: pretty;
+        font-size: clampValues(18, 24, $sm, $xl);
+
+        p:first-child {
+            font-size: clampValues(24, 30, $sm, $xl);
+            line-height: 1;
+            color: $navy;
+        }
     }
 }
 
