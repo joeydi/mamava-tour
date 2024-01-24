@@ -333,13 +333,14 @@ export default function initTour(element) {
         const scrollPosition = timeline.scrollTrigger.labelToScroll("End");
 
         window.scrollTo({
-            top: scrollPosition - window.innerHeight / 2,
+            top: scrollPosition,
             behavior: "instant",
         });
 
         gsap.to(window, {
             scrollTo: {
-                y: scrollPosition,
+                y: "#benefits",
+                offsetY: 40,
                 autoKill: true,
             },
             duration: 1,
