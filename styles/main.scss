@@ -634,7 +634,8 @@ section.features {
         border-top-left-radius: 10px;
         overflow: hidden;
 
-        img {
+        img,
+        video {
             transform-origin: 50% 0;
             position: absolute;
             inset: 0;

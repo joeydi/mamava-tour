@@ -11,7 +11,7 @@ export default function initFeatures(element) {
     const progress = element.querySelector(".progress");
     const progressRect = progress.getBoundingClientRect();
     const panels = element.querySelectorAll(".panel");
-    const images = element.querySelectorAll(".media-wrap img:not(:first-child)");
+    const media = element.querySelectorAll(".media-wrap img:not(:first-child), .media-wrap video:not(:first-child)");
     const lists = element.querySelectorAll(".benefit ul");
     const contents = element.querySelectorAll(".heading, .benefit");
     const contentRects = Array.from(contents).map((el) => {
@@ -20,7 +20,7 @@ export default function initFeatures(element) {
     const scrollTriggers = element.querySelectorAll("[data-scroll-target]");
 
     gsap.set(
-        images,
+        media,
         {
             yPercent: 100,
             scale: 1.5,
@@ -75,7 +75,7 @@ export default function initFeatures(element) {
         }
 
         timeline.to(
-            images[i],
+            media[i],
             {
                 yPercent: 0,
                 scale: 1,
