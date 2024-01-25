@@ -51,7 +51,7 @@ export default function initFeatures(element) {
             scrub: 1,
             snap: {
                 snapTo: "labels",
-                duration: 1,
+                duration: { min: 0.2, max: 0.5 },
                 delay: 0,
             },
         },
