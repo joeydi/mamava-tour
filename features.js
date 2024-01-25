@@ -12,6 +12,7 @@ export default function initFeatures(element) {
     const progressRect = progress.getBoundingClientRect();
     const panels = element.querySelectorAll(".panel");
     const media = element.querySelectorAll(".media-wrap img:not(:first-child), .media-wrap video:not(:first-child)");
+    const lazyVideos = element.querySelectorAll(".media-wrap video[data-src]");
     const lists = element.querySelectorAll(".benefit ul");
     const contents = element.querySelectorAll(".heading, .benefit");
     const contentRects = Array.from(contents).map((el) => {
@@ -53,6 +54,11 @@ export default function initFeatures(element) {
                 snapTo: "labels",
                 duration: { min: 0.2, max: 0.5 },
                 delay: 0,
+            },
+            onEnter: () => {
+                lazyVideos.forEach((el) => {
+                    el.src = el.dataset.src;
+                });
             },
         },
     });
