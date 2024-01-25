@@ -59,7 +59,6 @@ export default function initTour(element) {
             scrub: true,
             onUpdate: () => {
                 const time = timeline.progress() * timeline.duration();
-                // timeLabel.innerText = time.toFixed(1);
 
                 const label = getSectionLabel(time);
                 navLabel.innerText = label;
