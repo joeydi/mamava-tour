@@ -47,6 +47,7 @@ body {
     height: 100%;
     margin: 0;
     font-family: "proxima-soft", sans-serif;
+    line-height: 1.4;
     color: $dark-navy;
 }
 
@@ -543,6 +544,7 @@ section.features {
     p {
         margin: 0;
         font-size: clampValues(18, 22, $sm, $xl);
+        line-height: 1.4;
     }
 
     .features-pin {
