@@ -684,14 +684,14 @@ section.specs {
         display: flex;
         flex-direction: column;
         gap: clampValues(20, 40, $sm, $xl);
-        padding: clampValues(20, 40, $sm, $xl);
+        padding: clampValues(20, 60, $sm, $xl);
         border-radius: 10px;
         background-color: $white;
     }
 
     ul {
-        max-width: 100%;
-        margin: 0;
+        max-width: 480px;
+        margin: 0 auto;
         padding: 0;
         list-style: none;
     }
@@ -699,6 +699,7 @@ section.specs {
     li {
         padding: clampValues(10, 15, $sm, $xl) 0;
         border-bottom: 1px solid $cream;
+        text-wrap: pretty;
         font-size: clampValues(16, 18, $sm, $xl);
         line-height: 1.2;
 
@@ -716,7 +717,7 @@ section.specs {
         overflow: visible;
 
         .swiper-slide {
-            opacity: 0.25;
+            opacity: 0.5;
             filter: blur(6px);
             transition: opacity 1s, filter 0.5s, transform 0.5s;
 
@@ -770,7 +771,7 @@ section.specs {
             align-items: flex-start;
 
             ul {
-                margin: 10px 0;
+                margin: 10px auto;
             }
 
             img {
