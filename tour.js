@@ -27,7 +27,7 @@ export default function initTour(element) {
     const mobilitySplit = new SplitText(mobility.querySelector("h2"), { type: "lines" });
 
     gsap.set([exterior, access, interior1, interior2, mobility], {
-        y: () => window.innerHeight / 4,
+        yPercent: 100,
     });
 
     gsap.set([exteriorSplit.lines, accessSplit.lines, interior1Split.lines, interior2Split.lines, mobilitySplit.lines], {
@@ -87,7 +87,7 @@ export default function initTour(element) {
         exterior,
         {
             opacity: 1,
-            y: 0,
+            yPercent: 0,
             duration: 1,
             ease: "power4.out",
         },
@@ -110,7 +110,7 @@ export default function initTour(element) {
         exterior,
         {
             opacity: 0,
-            y: () => window.innerHeight / -4,
+            yPercent: -100,
             duration: 1,
             ease: "power4.in",
         },
@@ -123,7 +123,7 @@ export default function initTour(element) {
         access,
         {
             opacity: 1,
-            y: 0,
+            yPercent: 0,
             duration: 1,
             ease: "power4.out",
         },
@@ -146,7 +146,7 @@ export default function initTour(element) {
         access,
         {
             opacity: 0,
-            y: () => window.innerHeight / -4,
+            yPercent: -100,
             duration: 1,
             ease: "power4.in",
         },
@@ -159,7 +159,7 @@ export default function initTour(element) {
         interior1,
         {
             opacity: 1,
-            y: 0,
+            yPercent: 0,
             duration: 1,
             ease: "power4.out",
         },
@@ -182,7 +182,7 @@ export default function initTour(element) {
         interior1,
         {
             opacity: 0,
-            y: () => window.innerHeight / -4,
+            yPercent: -100,
             duration: 1,
             ease: "power4.in",
         },
@@ -195,7 +195,7 @@ export default function initTour(element) {
         interior2,
         {
             opacity: 1,
-            y: 0,
+            yPercent: 0,
             duration: 1,
             ease: "power4.out",
         },
@@ -218,7 +218,7 @@ export default function initTour(element) {
         interior2,
         {
             opacity: 0,
-            y: () => window.innerHeight / -4,
+            yPercent: -100,
             duration: 1,
             ease: "power4.in",
         },
@@ -231,7 +231,7 @@ export default function initTour(element) {
         mobility,
         {
             opacity: 1,
-            y: 0,
+            yPercent: 0,
             duration: 1,
             ease: "power4.out",
         },
@@ -255,18 +255,8 @@ export default function initTour(element) {
     timeline.to(
         mobility,
         {
-            y: () => window.innerHeight / -4,
-            duration: 3,
-            ease: "power4.inOut",
-        },
-        24
-    );
-
-    timeline.to(
-        mobility,
-        {
             opacity: 0,
-            y: () => window.innerHeight / -2,
+            yPercent: -100,
             duration: 1,
             ease: "power4.in",
         },
