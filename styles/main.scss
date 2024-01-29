@@ -700,6 +700,7 @@ section.specs {
         padding: clampValues(10, 15, $sm, $xl) 0;
         border-bottom: 1px solid $cream;
         font-size: clampValues(16, 18, $sm, $xl);
+        line-height: 1.2;
 
         &:first-child {
             padding-top: 0;
