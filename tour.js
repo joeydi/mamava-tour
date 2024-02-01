@@ -13,9 +13,9 @@ export default function initTour(element) {
     const timeLabel = element.querySelector(".time");
     const navPrevious = element.querySelector(".nav .previous");
     const navNext = element.querySelector(".nav .next");
-    const navSkip = element.querySelector(".nav .skip");
     const navLabel = element.querySelector(".nav .label");
     const intro = element.querySelector(".intro");
+    const introButton = intro.querySelector("button");
     // const introSplit = new SplitText(intro.querySelector("h2"), { type: "lines" });
     const exterior = element.querySelector(".exterior");
     const exteriorSplit = new SplitText(exterior.querySelector("h2"), { type: "lines" });
@@ -68,13 +68,6 @@ export default function initTour(element) {
             end: "bottom bottom",
             scrub: true,
         },
-        // onUpdate: () => {
-        //     const time = video.currentTime.toFixed(2);
-        //     timeLabel.innerText = time;
-        // },
-        onComplete: () => {
-            entryTimeline.kill();
-        },
     });
 
     entryTimeline.fromTo(
@@ -109,8 +102,8 @@ export default function initTour(element) {
             currentTime: 2,
         },
         {
-            currentTime: 29.7,
-            duration: 27.7,
+            currentTime: videoDuration,
+            duration: videoDuration - 2,
             ease: "none",
         },
         0
@@ -307,6 +300,16 @@ export default function initTour(element) {
         25
     );
 
+    timeline.to(
+        window,
+        {
+            scrollTo: "+=100",
+            duration: 2,
+            ease: "power4.inOut",
+        },
+        26
+    );
+
     timeline.addLabel("End");
 
     const playToLabel = (label) => {
@@ -318,11 +321,27 @@ export default function initTour(element) {
             duration: duration,
             ease: "none",
         });
+
+        gsap.to(window, {
+            scrollTo: {
+                y: video,
+                offsetY: () => {
+                    return getComputedStyle(document.documentElement).getPropertyValue("--header-height").replace("px", "");
+                },
+            },
+            duration: 1,
+            ease: "power4.out",
+        });
+
+        entryTimeline.kill();
     };
 
+    introButton.addEventListener("click", () => {
+        playToLabel("Exterior");
+    });
+
     navPrevious.addEventListener("click", () => {
-        const currentTime = timeline.progress() * timeline.duration();
-        const previousTimelineLabel = timeline.previousLabel(currentTime - 0.01);
+        const previousTimelineLabel = timeline.previousLabel();
 
         if (previousTimelineLabel) {
             playToLabel(previousTimelineLabel);
@@ -330,30 +349,10 @@ export default function initTour(element) {
     });
 
     navNext.addEventListener("click", () => {
-        const currentTime = timeline.progress() * timeline.duration();
-        const nextTimelineLabel = timeline.nextLabel(currentTime + 0.01);
+        const nextTimelineLabel = timeline.nextLabel();
 
         if (nextTimelineLabel) {
             playToLabel(nextTimelineLabel);
         }
-    });
-
-    navSkip.addEventListener("click", () => {
-        const scrollPosition = timeline.scrollTrigger.labelToScroll("End");
-
-        window.scrollTo({
-            top: scrollPosition,
-            behavior: "instant",
-        });
-
-        gsap.to(window, {
-            scrollTo: {
-                y: "#benefits",
-                offsetY: 40,
-                autoKill: true,
-            },
-            duration: 1,
-            ease: "expo.out",
-        });
     });
 }

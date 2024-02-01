@@ -430,6 +430,7 @@ section.tour {
         overflow: hidden;
 
         &.intro {
+            z-index: 1;
             max-width: 540px;
         }
 
