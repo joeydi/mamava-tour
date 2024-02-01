@@ -9,12 +9,14 @@ export default function initTour(element) {
     if (!element) return;
 
     const video = element.querySelector("video");
-    // const pin = element.querySelector(".pin");
+    const videoDuration = 29.7;
     const timeLabel = element.querySelector(".time");
     const navPrevious = element.querySelector(".nav .previous");
     const navNext = element.querySelector(".nav .next");
     const navSkip = element.querySelector(".nav .skip");
     const navLabel = element.querySelector(".nav .label");
+    const intro = element.querySelector(".intro");
+    // const introSplit = new SplitText(intro.querySelector("h2"), { type: "lines" });
     const exterior = element.querySelector(".exterior");
     const exteriorSplit = new SplitText(exterior.querySelector("h2"), { type: "lines" });
     const access = element.querySelector(".access");
@@ -25,6 +27,14 @@ export default function initTour(element) {
     const interior2Split = new SplitText(interior2.querySelector("h2"), { type: "lines" });
     const mobility = element.querySelector(".mobility");
     const mobilitySplit = new SplitText(mobility.querySelector("h2"), { type: "lines" });
+
+    video.addEventListener("timeupdate", () => {
+        timeLabel.innerText = video.currentTime.toFixed(2);
+    });
+
+    gsap.set(intro, {
+        opacity: 1,
+    });
 
     gsap.set([exterior, access, interior1, interior2, mobility], {
         yPercent: 100,
@@ -58,9 +68,12 @@ export default function initTour(element) {
             end: "bottom bottom",
             scrub: true,
         },
-        onUpdate: () => {
-            const time = video.currentTime.toFixed(2);
-            timeLabel.innerText = time;
+        // onUpdate: () => {
+        //     const time = video.currentTime.toFixed(2);
+        //     timeLabel.innerText = time;
+        // },
+        onComplete: () => {
+            entryTimeline.kill();
         },
     });
 
@@ -78,9 +91,9 @@ export default function initTour(element) {
     );
 
     const timeline = gsap.timeline({
+        paused: true,
         onUpdate: () => {
             const time = timeline.progress() * timeline.duration();
-
             const label = getSectionLabel(time);
             navLabel.innerText = label;
 
@@ -90,6 +103,30 @@ export default function initTour(element) {
         },
     });
 
+    timeline.fromTo(
+        video,
+        {
+            currentTime: 2,
+        },
+        {
+            currentTime: 29.7,
+            duration: 27.7,
+            ease: "none",
+        },
+        0
+    );
+
+    timeline.to(
+        intro,
+        {
+            opacity: 0,
+            yPercent: -100,
+            duration: 1,
+            ease: "power4.in",
+        },
+        0
+    );
+
     timeline.to(
         exterior,
         {
@@ -98,7 +135,7 @@ export default function initTour(element) {
             duration: 1,
             ease: "power4.out",
         },
-        2
+        1
     );
 
     timeline.to(
@@ -110,7 +147,7 @@ export default function initTour(element) {
             ease: "power4.out",
             stagger: 0.1,
         },
-        2
+        1
     );
 
     timeline.to(
@@ -121,10 +158,10 @@ export default function initTour(element) {
             duration: 1,
             ease: "power4.in",
         },
-        6.5
+        4.5
     );
 
-    timeline.addLabel("Exterior", 6.5);
+    timeline.addLabel("Exterior", 4.5);
 
     timeline.to(
         access,
@@ -134,7 +171,7 @@ export default function initTour(element) {
             duration: 1,
             ease: "power4.out",
         },
-        7.5
+        5.5
     );
 
     timeline.to(
@@ -146,7 +183,7 @@ export default function initTour(element) {
             ease: "power4.out",
             stagger: 0.1,
         },
-        7.5
+        5.5
     );
 
     timeline.to(
@@ -157,10 +194,10 @@ export default function initTour(element) {
             duration: 1,
             ease: "power4.in",
         },
-        10
+        8.1
     );
 
-    timeline.addLabel("Access", 10);
+    timeline.addLabel("Access", 8.1);
 
     timeline.to(
         interior1,
@@ -170,7 +207,7 @@ export default function initTour(element) {
             duration: 1,
             ease: "power4.out",
         },
-        11
+        9
     );
 
     timeline.to(
@@ -182,7 +219,7 @@ export default function initTour(element) {
             ease: "power4.out",
             stagger: 0.1,
         },
-        11
+        9
     );
 
     timeline.to(
@@ -193,10 +230,10 @@ export default function initTour(element) {
             duration: 1,
             ease: "power4.in",
         },
-        14.5
+        12.1
     );
 
-    timeline.addLabel("Interior 1", 14.2);
+    timeline.addLabel("Interior 1", 12.1);
 
     timeline.to(
         interior2,
@@ -206,7 +243,7 @@ export default function initTour(element) {
             duration: 1,
             ease: "power4.out",
         },
-        15.5
+        13.5
     );
 
     timeline.to(
@@ -218,7 +255,7 @@ export default function initTour(element) {
             ease: "power4.out",
             stagger: 1,
         },
-        15.75
+        13.75
     );
 
     timeline.to(
@@ -229,10 +266,10 @@ export default function initTour(element) {
             duration: 1,
             ease: "power4.in",
         },
-        19
+        17
     );
 
-    timeline.addLabel("Interior 2", 18.7);
+    timeline.addLabel("Interior 2", 16.7);
 
     timeline.to(
         mobility,
@@ -242,10 +279,10 @@ export default function initTour(element) {
             duration: 1,
             ease: "power4.out",
         },
-        20
+        18
     );
 
-    timeline.addLabel("Mobility", 26.8);
+    timeline.addLabel("Mobility", 24.8);
 
     timeline.to(
         mobilitySplit.lines,
@@ -256,7 +293,7 @@ export default function initTour(element) {
             ease: "power4.out",
             stagger: 0.1,
         },
-        20
+        18
     );
 
     timeline.to(
@@ -267,45 +304,18 @@ export default function initTour(element) {
             duration: 1,
             ease: "power4.in",
         },
-        27
+        25
     );
 
     timeline.addLabel("End");
 
-    // Pin the tour
-    // ScrollTrigger.create({
-    //     trigger: element,
-    //     pin: pin,
-    //     start: () => {
-    //         const headerHeight = getComputedStyle(document.documentElement).getPropertyValue("--header-height");
-    //         return `top ${headerHeight}`;
-    //     },
-    //     end: "bottom top",
-    // });
-
-    // Scroll the video out at half speed
-    // gsap.to(video, {
-    //     yPercent: -50,
-    //     scrollTrigger: {
-    //         trigger: element,
-    //         start: "bottom bottom",
-    //         end: "bottom top",
-    //         scrub: true,
-    //     },
-    // });
-
     const playToLabel = (label) => {
-        const playbackSpeed = 2.75;
-        const scrollPosition = timeline.scrollTrigger.labelToScroll(label);
-        const scrollDelta = Math.abs(document.documentElement.scrollTop - scrollPosition);
-        const scrollDuration = (scrollDelta / window.innerHeight) * playbackSpeed;
+        const labelTime = timeline.labels[label];
+        const duration = Math.abs(timeline.time() - labelTime);
+        console.log({ labelTime, duration });
 
-        gsap.to(window, {
-            scrollTo: {
-                y: scrollPosition,
-                autoKill: true,
-            },
-            duration: scrollDuration,
+        timeline.tweenTo(label, {
+            duration: duration,
             ease: "none",
         });
     };
