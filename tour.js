@@ -9,8 +9,8 @@ export default function initTour(element) {
     if (!element) return;
 
     const video = element.querySelector("video");
-    const pin = element.querySelector(".pin");
-    // const timeLabel = element.querySelector(".time");
+    // const pin = element.querySelector(".pin");
+    const timeLabel = element.querySelector(".time");
     const navPrevious = element.querySelector(".nav .previous");
     const navNext = element.querySelector(".nav .next");
     const navSkip = element.querySelector(".nav .skip");
@@ -51,37 +51,44 @@ export default function initTour(element) {
         return "Mobility";
     };
 
-    const timeline = gsap.timeline({
+    const entryTimeline = gsap.timeline({
         scrollTrigger: {
             trigger: element,
             start: "top bottom",
-            end: "bottom 75%",
+            end: "bottom bottom",
             scrub: true,
-            onUpdate: () => {
-                const time = timeline.progress() * timeline.duration();
-
-                const label = getSectionLabel(time);
-                navLabel.innerText = label;
-
-                // Disable prev/next buttons at ends
-                navPrevious.disabled = !timeline.previousLabel();
-                navNext.disabled = !timeline.nextLabel();
-            },
+        },
+        onUpdate: () => {
+            const time = video.currentTime.toFixed(2);
+            timeLabel.innerText = time;
         },
     });
 
-    timeline.fromTo(
+    entryTimeline.fromTo(
         video,
         {
             currentTime: 0,
         },
         {
-            currentTime: 29.7,
-            duration: 29.7,
+            currentTime: 2,
+            duration: 2,
             ease: "none",
         },
         0
     );
+
+    const timeline = gsap.timeline({
+        onUpdate: () => {
+            const time = timeline.progress() * timeline.duration();
+
+            const label = getSectionLabel(time);
+            navLabel.innerText = label;
+
+            // Disable prev/next buttons at ends
+            navPrevious.disabled = !timeline.previousLabel();
+            navNext.disabled = !timeline.nextLabel();
+        },
+    });
 
     timeline.to(
         exterior,
@@ -266,26 +273,26 @@ export default function initTour(element) {
     timeline.addLabel("End");
 
     // Pin the tour
-    ScrollTrigger.create({
-        trigger: element,
-        pin: pin,
-        start: () => {
-            const headerHeight = getComputedStyle(document.documentElement).getPropertyValue("--header-height");
-            return `top ${headerHeight}`;
-        },
-        end: "bottom top",
-    });
+    // ScrollTrigger.create({
+    //     trigger: element,
+    //     pin: pin,
+    //     start: () => {
+    //         const headerHeight = getComputedStyle(document.documentElement).getPropertyValue("--header-height");
+    //         return `top ${headerHeight}`;
+    //     },
+    //     end: "bottom top",
+    // });
 
     // Scroll the video out at half speed
-    gsap.to(video, {
-        yPercent: -50,
-        scrollTrigger: {
-            trigger: element,
-            start: "bottom bottom",
-            end: "bottom top",
-            scrub: true,
-        },
-    });
+    // gsap.to(video, {
+    //     yPercent: -50,
+    //     scrollTrigger: {
+    //         trigger: element,
+    //         start: "bottom bottom",
+    //         end: "bottom top",
+    //         scrub: true,
+    //     },
+    // });
 
     const playToLabel = (label) => {
         const playbackSpeed = 2.75;

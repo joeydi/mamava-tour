@@ -388,12 +388,14 @@ section.hero {
 section.tour {
     position: relative;
     z-index: 2;
-    height: 1000vh;
+    height: calc(100vh - var(--header-height));
 
     video {
-        position: relative;
+        position: absolute;
+        left: 0;
+        top: 0;
         width: 100%;
-        height: calc(100vh - var(--header-height));
+        height: 100%;
         object-fit: cover;
     }
 
