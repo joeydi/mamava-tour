@@ -137,7 +137,7 @@ export default function initFeatures(element) {
 
             gsap.to(timeline, {
                 progress: snappedProgress,
-                duration: 1,
+                duration: 2,
                 ease: "expo.out",
             });
         },
