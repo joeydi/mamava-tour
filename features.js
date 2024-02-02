@@ -55,7 +55,7 @@ export default function initFeatures(element) {
     );
 
     panels.forEach((el, i) => {
-        const label = el.id ?? "start";
+        const label = el.id;
         timeline.addLabel(label, i);
 
         // Skip the last panel
@@ -114,34 +114,55 @@ export default function initFeatures(element) {
 
     const snap = gsap.utils.snap(1 / (panels.length - 1));
 
-    ScrollTrigger.create({
-        trigger: element,
-        start: "top top",
-        end: `+=${(panels.length - 1) * 100}%`,
-        pin: pin,
-        onEnter: () => {
-            lazyVideos.forEach((el) => {
-                el.src = el.dataset.src;
-            });
-        },
-        onUpdate: (self) => {
-            const snappedProgress = snap(self.progress);
+    const scrollTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: element,
+            start: "top top",
+            end: "bottom bottom",
+            pin: pin,
+            scrub: true,
+            onEnter: () => {
+                lazyVideos.forEach((el) => {
+                    el.src = el.dataset.src;
+                });
+            },
+            onUpdate: (self) => {
+                const snappedProgress = snap(self.progress);
 
-            gsap.to(timeline, {
-                progress: snappedProgress,
-                duration: 2,
-                ease: "expo.out",
-            });
+                gsap.to(timeline, {
+                    progress: snappedProgress,
+                    duration: 1,
+                    ease: "power2.out",
+                });
+            },
         },
     });
+
+    scrollTimeline.to(
+        { progress: 0 },
+        {
+            progress: 1,
+            duration: panels.length - 1,
+        }
+    );
+
+    panels.forEach((el, i) => {
+        const label = el.id;
+        scrollTimeline.addLabel(label, i);
+    });
+
+    scrollTimeline.duration(panels.length);
 
     // Add click handlers to scroll timeline from [data-scroll-target] to associated timeline label
     scrollTriggers.forEach((el) => {
         el.addEventListener("click", () => {
             const target = el.dataset.scrollTarget;
+
             gsap.to(window, {
                 scrollTo: {
-                    y: timeline.scrollTrigger.labelToScroll(target),
+                    y: scrollTimeline.scrollTrigger.labelToScroll(target),
+                    duration: 1,
+                    ease: "power2.out",
                     autoKill: true,
                 },
             });
