@@ -84,7 +84,7 @@ export default function initTour(element) {
     );
 
     let previousProgress = 0;
-    let previousLabel = "";
+    let previousLabel = "Exterior";
 
     const updateNav = () => {
         const progress = timeline.progress();
@@ -94,7 +94,7 @@ export default function initTour(element) {
         if (label !== previousLabel) {
             gsap.timeline()
                 .to(navLabel, {
-                    x: 20 * direction,
+                    x: -20 * direction,
                     opacity: 0,
                     duration: 0.5,
                     ease: "power2.in",
@@ -103,7 +103,7 @@ export default function initTour(element) {
                     navLabel.innerText = label;
                 })
                 .set(navLabel, {
-                    x: -20 * direction,
+                    x: 20 * direction,
                 })
                 .to(navLabel, {
                     x: 0,
@@ -333,7 +333,7 @@ export default function initTour(element) {
     timeline.to(
         window,
         {
-            scrollTo: "+=100",
+            scrollTo: "+=" + window.innerHeight / 4,
             duration: 2,
             ease: "power4.inOut",
         },
