@@ -10,7 +10,7 @@ export default function initTour(element) {
 
     const video = element.querySelector("video");
     const videoDuration = 29.7;
-    const timeLabel = element.querySelector(".time");
+    // const timeLabel = element.querySelector(".time");
     const navPrevious = element.querySelector(".nav .previous");
     const navNext = element.querySelector(".nav .next");
     const navLabel = element.querySelector(".nav .label");
@@ -28,9 +28,9 @@ export default function initTour(element) {
     const mobility = element.querySelector(".mobility");
     const mobilitySplit = new SplitText(mobility.querySelector("h2"), { type: "lines" });
 
-    video.addEventListener("timeupdate", () => {
-        timeLabel.innerText = video.currentTime.toFixed(2);
-    });
+    // video.addEventListener("timeupdate", () => {
+    //     timeLabel.innerText = video.currentTime.toFixed(2);
+    // });
 
     gsap.set(intro, {
         opacity: 1,
@@ -83,17 +83,47 @@ export default function initTour(element) {
         0
     );
 
+    let previousProgress = 0;
+    let previousLabel = "";
+
+    const updateNav = () => {
+        const progress = timeline.progress();
+        const direction = progress > previousProgress ? 1 : -1;
+        const label = direction > 0 ? timeline.nextLabel(timeline.time() - 0.1) : timeline.previousLabel(timeline.time() + 0.1);
+
+        if (label !== previousLabel) {
+            gsap.timeline()
+                .to(navLabel, {
+                    x: 20 * direction,
+                    opacity: 0,
+                    duration: 0.5,
+                    ease: "power2.in",
+                })
+                .add(() => {
+                    navLabel.innerText = label;
+                })
+                .set(navLabel, {
+                    x: -20 * direction,
+                })
+                .to(navLabel, {
+                    x: 0,
+                    opacity: 1,
+                    duration: 0.5,
+                    ease: "power2.out",
+                });
+        }
+
+        previousProgress = progress;
+        previousLabel = label;
+
+        // Disable prev/next buttons at ends
+        navPrevious.disabled = !timeline.previousLabel();
+        navNext.disabled = !timeline.nextLabel();
+    };
+
     const timeline = gsap.timeline({
         paused: true,
-        onUpdate: () => {
-            const time = timeline.progress() * timeline.duration();
-            const label = getSectionLabel(time);
-            navLabel.innerText = label;
-
-            // Disable prev/next buttons at ends
-            navPrevious.disabled = !timeline.previousLabel();
-            navNext.disabled = !timeline.nextLabel();
-        },
+        onUpdate: updateNav,
     });
 
     timeline.fromTo(
@@ -310,12 +340,11 @@ export default function initTour(element) {
         26
     );
 
-    timeline.addLabel("End");
+    timeline.addLabel("The end.");
 
     const playToLabel = (label) => {
         const labelTime = timeline.labels[label];
         const duration = Math.abs(timeline.time() - labelTime);
-        console.log({ labelTime, duration });
 
         timeline.tweenTo(label, {
             duration: duration,
@@ -329,7 +358,7 @@ export default function initTour(element) {
                     return getComputedStyle(document.documentElement).getPropertyValue("--header-height").replace("px", "");
                 },
             },
-            duration: 1,
+            duration: 2,
             ease: "power4.out",
         });
 

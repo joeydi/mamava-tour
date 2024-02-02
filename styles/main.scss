@@ -421,7 +421,8 @@ section.tour {
         width: 40%;
         min-width: 340px;
         max-width: 440px;
-        padding: clampValues(20, 30, $sm, $xl) clampValues(30, 40, $sm, $xl);
+        // padding: clampValues(20, 30, $sm, $xl) clampValues(30, 40, $sm, $xl);
+        padding: clampValues(20, 40, $sm, $xl) clampValues(30, 50, $sm, $xl);
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.35);
         background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
@@ -469,12 +470,11 @@ section.tour {
         background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
         backdrop-filter: blur(20px) saturate(2);
 
-        a,
         button {
             cursor: pointer;
             position: relative;
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 12px 20px;
+            border-radius: 24px;
             border: 1px solid rgba(1, 21, 128, 0.2);
             background-color: $white;
             text-decoration: none;
@@ -483,7 +483,6 @@ section.tour {
             font-size: clampValues(16, 18, $sm, $xl);
             font-weight: $font-weight-semibold;
             line-height: 20px;
-            color: $navy;
             transition: background-color 0.35s, color 0.35s, box-shadow 0.35s;
 
             &:hover,
@@ -498,7 +497,7 @@ section.tour {
             }
 
             &[disabled] {
-                color: lighten($dark-navy, 40%);
+                filter: saturate(0);
 
                 &:hover {
                     box-shadow: none;
@@ -509,35 +508,21 @@ section.tour {
                     color: lighten($dark-navy, 40%);
                 }
             }
-        }
 
-        .links {
-            display: flex;
-
-            button:first-child {
-                padding-left: 20px;
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-            }
-
-            button:last-child {
-                padding-right: 20px;
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
+            img {
+                width: auto;
             }
         }
 
         .label {
-            min-width: 100px;
+            min-width: 180px;
             padding: 8px 20px;
-            border-top: 1px solid rgba(1, 21, 128, 0.2);
-            border-bottom: 1px solid rgba(1, 21, 128, 0.2);
-            background-color: $white;
             text-align: center;
+            line-height: 20px;
             font-family: "proxima-soft", sans-serif;
             font-size: clampValues(16, 18, $sm, $xl);
             font-weight: $font-weight-medium;
-            line-height: 20px;
+            color: $navy;
         }
     }
 }
