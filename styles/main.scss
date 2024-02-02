@@ -549,36 +549,9 @@ section.tour {
 
 section.features {
     position: relative;
-
-    .panel {
-        height: 75vh;
-        pointer-events: none;
-    }
-
-    h2 {
-        cursor: pointer;
-    }
-
-    p {
-        margin: 0;
-        font-size: clampValues(18, 22, $sm, $xl);
-        line-height: 1.4;
-    }
-
-    .features-pin {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100vw;
-        height: 100vh;
-    }
+    padding: clamp(60px, 12px + 7.5vw, 120px) 0;
 
     .features-wrap {
-        position: relative;
-        top: calc(var(--header-height) + 40px);
-        display: flex;
-        width: 100%;
-        height: calc(100vh - var(--header-height) - 80px);
         background-color: $sky;
         border: 1px solid transparentize($navy, 0.9);
         border-radius: 10px;
@@ -587,15 +560,15 @@ section.features {
 
     .features-content {
         position: relative;
-        width: 33.33%;
-        padding-top: clampValues(30, 100, $sm, $xl);
-        padding-left: clampValues(50, 140, $sm, $xl);
-        padding-right: clampValues(20, 40, $sm, $xl);
+        padding-top: clampValues(20, 40, $sm, $xxl);
+        padding-left: clampValues(50, 100, $sm, $xxl);
+        padding-right: clampValues(20, 40, $sm, $xxl);
+        padding-bottom: 1px;
 
         &::before {
             content: "";
             position: absolute;
-            left: clampValues(30, 100, $sm, $xl);
+            left: clampValues(30, 60, $sm, $xxl);
             top: 0;
             width: 1px;
             height: 100%;
@@ -603,21 +576,24 @@ section.features {
         }
 
         .progress {
-            transform-origin: 0 0;
-            position: absolute;
-            left: clampValues(30, 100, $sm, $xl);
-            top: clampValues(30, 100, $sm, $xl);
-            width: 4px;
-            height: 100px;
-            background-color: $cyan;
+            display: none;
         }
 
         .heading {
-            margin-bottom: clampValues(20, 60, $sm, $xl);
+            margin-bottom: clampValues(20, 40, $sm, $xl);
+        }
+
+        .media {
+            display: block;
+            width: calc(100% + clampValues(20, 40, $sm, $xl));
+            height: auto;
+            margin-bottom: 20px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
         }
 
         .benefit {
-            margin-bottom: clampValues(15, 30, $sm, $xl);
+            margin: 30px 0;
 
             h2 {
                 display: flex;
@@ -670,27 +646,106 @@ section.features {
     }
 
     .features-media {
-        width: 66.67%;
-        padding-top: clampValues(30, 100, $sm, $xl);
+        display: none;
     }
 
-    .media-wrap {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        border-top-left-radius: 10px;
-        overflow: hidden;
+    @media (min-width: 1200px) and (min-height: 768px) {
+        padding: 0;
 
-        img,
-        video {
-            transform-origin: 50% 0;
+        .panel {
+            height: 75vh;
+            pointer-events: none;
+        }
+
+        h1 {
+            font-size: clampValues(36, 60, $lg, $xxl);
+        }
+
+        h2 {
+            cursor: pointer;
+        }
+
+        p {
+            margin: 0;
+            font-size: clampValues(18, 22, $sm, $xl);
+            line-height: 1.4;
+        }
+
+        .features-pin {
             position: absolute;
-            inset: 0;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .features-wrap {
+            position: relative;
+            top: calc(var(--header-height) + 20px);
+            display: flex;
+            width: 100%;
+            height: calc(100vh - var(--header-height) - 40px);
+        }
+
+        .features-content {
+            width: 40%;
+
+            .progress {
+                display: block;
+                transform-origin: 0 0;
+                position: absolute;
+                left: clampValues(30, 60, $sm, $xxl);
+                padding-top: clampValues(20, 40, $sm, $xxl);
+                width: 4px;
+                height: 100px;
+                background-color: $cyan;
+            }
+
+            .media {
+                display: none;
+            }
+        }
+
+        .features-media {
+            display: block;
+            width: 60%;
+            padding-top: clampValues(20, 40, $sm, $xxl);
+        }
+
+        .media-wrap {
+            position: relative;
             width: 100%;
             height: 100%;
-            display: block;
-            object-fit: cover;
-            background-color: darken($sky, 5%);
+            border-top-left-radius: 10px;
+            overflow: hidden;
+
+            img,
+            video {
+                transform-origin: 50% 0;
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                object-fit: cover;
+                background-color: darken($sky, 5%);
+            }
+        }
+    }
+
+    @media (min-width: 1200px) and (min-height: 1000px) {
+        .features-content {
+            width: 33.33%;
+            padding-top: clampValues(60, 100, $sm, $xxl);
+        }
+
+        .features-media {
+            width: 66.67%;
+            padding-top: clampValues(60, 100, $sm, $xxl);
+
+            .progress {
+                top: clampValues(60, 100, $sm, $xxl);
+            }
         }
     }
 }
