@@ -115,17 +115,10 @@ export default function initFeatures(element) {
     const snap = gsap.utils.snap(1 / (panels.length - 1));
 
     ScrollTrigger.create({
-        // markers: true,
         trigger: element,
         start: "top top",
         end: `+=${(panels.length - 1) * 100}%`,
         pin: pin,
-        // scrub: 1,
-        // snap: {
-        //     snapTo: "labels",
-        //     duration: { min: 0.2, max: 0.5 },
-        //     delay: 0,
-        // },
         onEnter: () => {
             lazyVideos.forEach((el) => {
                 el.src = el.dataset.src;
@@ -133,7 +126,6 @@ export default function initFeatures(element) {
         },
         onUpdate: (self) => {
             const snappedProgress = snap(self.progress);
-            console.log(self.progress, snappedProgress);
 
             gsap.to(timeline, {
                 progress: snappedProgress,
