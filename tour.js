@@ -9,8 +9,11 @@ export default function initTour(element) {
     if (!element) return;
 
     const video = element.querySelector("video");
+    const pin = element.querySelector(".pin");
     const videoDuration = 29.7;
-    // const timeLabel = element.querySelector(".time");
+    const videoScrollTriggerDuration = 2;
+    const timeLabel = element.querySelector(".time");
+    const timelineLabel = element.querySelector(".timeline");
     const navPrevious = element.querySelector(".nav .previous");
     const navNext = element.querySelector(".nav .next");
     const navLabel = element.querySelector(".nav .label");
@@ -28,9 +31,9 @@ export default function initTour(element) {
     const mobility = element.querySelector(".mobility");
     const mobilitySplit = new SplitText(mobility.querySelector("h2"), { type: "lines" });
 
-    // video.addEventListener("timeupdate", () => {
-    //     timeLabel.innerText = video.currentTime.toFixed(2);
-    // });
+    video.addEventListener("timeupdate", () => {
+        timeLabel.innerText = video.currentTime.toFixed(2);
+    });
 
     gsap.set(intro, {
         opacity: 1,
@@ -45,21 +48,25 @@ export default function initTour(element) {
         opacity: 0,
     });
 
-    const getSectionLabel = (time) => {
-        if (time < 7.5) {
-            return "Exterior";
-        }
+    ScrollTrigger.create({
+        trigger: element,
+        pin: pin,
+        pinSpacing: true,
+        start: () => {
+            return "top " + getComputedStyle(document.documentElement).getPropertyValue("--header-height");
+        },
+        end: "bottom bottom",
+    });
 
-        if (time < 11) {
-            return "Access";
-        }
-
-        if (time < 20) {
-            return "Interior";
-        }
-
-        return "Mobility";
-    };
+    gsap.to(video, {
+        yPercent: 50,
+        scrollTrigger: {
+            trigger: element,
+            start: "bottom bottom",
+            end: "100%",
+            scrub: true,
+        },
+    });
 
     const entryTimeline = gsap.timeline({
         scrollTrigger: {
@@ -76,22 +83,23 @@ export default function initTour(element) {
             currentTime: 0,
         },
         {
-            currentTime: 2,
-            duration: 2,
+            currentTime: videoScrollTriggerDuration,
+            duration: videoScrollTriggerDuration,
             ease: "none",
         },
         0
     );
 
     let previousProgress = 0;
-    let previousLabel = "Exterior";
+    let previousLabel = "Welcome";
 
     const updateNav = () => {
         const progress = timeline.progress();
         const direction = progress > previousProgress ? 1 : -1;
         const label = direction > 0 ? timeline.nextLabel(timeline.time() - 0.1) : timeline.previousLabel(timeline.time() + 0.1);
+        const formattedLabel = label.replace("1", "").replace("2", "");
 
-        if (label !== previousLabel) {
+        if (formattedLabel !== previousLabel) {
             gsap.timeline()
                 .to(navLabel, {
                     x: -20 * direction,
@@ -100,7 +108,7 @@ export default function initTour(element) {
                     ease: "power2.in",
                 })
                 .add(() => {
-                    navLabel.innerText = label;
+                    navLabel.innerText = formattedLabel;
                 })
                 .set(navLabel, {
                     x: 20 * direction,
@@ -114,26 +122,45 @@ export default function initTour(element) {
         }
 
         previousProgress = progress;
-        previousLabel = label;
+        previousLabel = formattedLabel;
 
         // Disable prev/next buttons at ends
         navPrevious.disabled = !timeline.previousLabel();
         navNext.disabled = !timeline.nextLabel();
     };
 
+    let timelineComplete = false;
     const timeline = gsap.timeline({
         paused: true,
-        onUpdate: updateNav,
+        onUpdate: () => {
+            updateNav();
+            timelineLabel.innerText = timeline.time().toFixed(2);
+
+            if (!timelineComplete && timeline.time() > 26) {
+                timelineComplete = true;
+                gsap.to(window, {
+                    scrollTo: "+=" + window.innerHeight / 2,
+                    duration: 2,
+                    ease: "power4.inOut",
+                });
+            }
+
+            if (timelineComplete && timeline.time() < 26) {
+                timelineComplete = false;
+            }
+        },
     });
+
+    timeline.addLabel("Welcome", 0);
 
     timeline.fromTo(
         video,
         {
-            currentTime: 2,
+            currentTime: videoScrollTriggerDuration,
         },
         {
             currentTime: videoDuration,
-            duration: videoDuration - 2,
+            duration: videoDuration - videoScrollTriggerDuration,
             ease: "none",
         },
         0
@@ -256,7 +283,7 @@ export default function initTour(element) {
         12.1
     );
 
-    timeline.addLabel("Interior 1", 12.1);
+    timeline.addLabel("Interior1", 12.1);
 
     timeline.to(
         interior2,
@@ -292,7 +319,7 @@ export default function initTour(element) {
         17
     );
 
-    timeline.addLabel("Interior 2", 16.7);
+    timeline.addLabel("Interior2", 16.7);
 
     timeline.to(
         mobility,
@@ -330,39 +357,70 @@ export default function initTour(element) {
         25
     );
 
-    timeline.to(
-        window,
-        {
-            scrollTo: "+=" + window.innerHeight / 4,
-            duration: 2,
-            ease: "power4.inOut",
-        },
-        26
-    );
-
     timeline.addLabel("The end.");
 
     const playToLabel = (label) => {
         const labelTime = timeline.labels[label];
         const duration = Math.abs(timeline.time() - labelTime);
+        const videoCurrentTime = video.currentTime;
 
-        timeline.tweenTo(label, {
-            duration: duration,
-            ease: "none",
-        });
+        entryTimeline.scrollTrigger.disable();
 
+        if (element.classList.contains("active")) {
+            timeline.tweenTo(label, {
+                duration: duration,
+                ease: "none",
+                onComplete: () => {
+                    // If we're going back to the start, animate video back to its scroll position, then re-enable entryTimeline.scrollTrigger
+                    if (label === "Welcome") {
+                        gsap.to(video, {
+                            currentTime: videoScrollTriggerDuration / 2,
+                            duration: videoScrollTriggerDuration / 2,
+                            ease: "none",
+                            onComplete: () => {
+                                element.classList.remove("active");
+                                ScrollTrigger.refresh();
+                                entryTimeline.scrollTrigger.enable();
+                            },
+                        });
+                    }
+                },
+            });
+        } else {
+            gsap.fromTo(
+                video,
+                {
+                    currentTime: videoCurrentTime,
+                },
+                {
+                    currentTime: videoScrollTriggerDuration,
+                    duration: videoScrollTriggerDuration - videoCurrentTime,
+                    ease: "none",
+                    onComplete: () => {
+                        timeline.tweenTo(label, {
+                            duration: duration,
+                            ease: "none",
+                        });
+                    },
+                }
+            );
+        }
+
+        // Scroll the window up to the top of the tour
         gsap.to(window, {
             scrollTo: {
-                y: video,
+                y: element,
                 offsetY: () => {
                     return getComputedStyle(document.documentElement).getPropertyValue("--header-height").replace("px", "");
                 },
             },
             duration: 2,
             ease: "power4.out",
+            onComplete: () => {
+                element.classList.add("active");
+                ScrollTrigger.refresh();
+            },
         });
-
-        entryTimeline.kill();
     };
 
     introButton.addEventListener("click", () => {
