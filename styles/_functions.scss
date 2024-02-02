@@ -9,14 +9,6 @@
     @return $number;
 }
 
-@function vw($px) {
-    @return math.div($px, 1920px) * 100 * 1vw;
-}
-
-@function vwmin($px) {
-    @return min(vw($px), $px);
-}
-
 @function clampValues($minValue, $maxValue, $minWidth, $maxWidth) {
     $minValue: strip-unit($minValue);
     $maxValue: strip-unit($maxValue);

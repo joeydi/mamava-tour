@@ -47,6 +47,7 @@ body {
     height: 100%;
     margin: 0;
     font-family: "proxima-soft", sans-serif;
+    font-weight: $font-weight-regular;
     line-height: 1.4;
     color: $dark-navy;
 }
@@ -574,10 +575,10 @@ section.features {
 
     .features-wrap {
         position: relative;
-        top: calc(vw(125px) + 40px);
+        top: calc(var(--header-height) + 40px);
         display: flex;
         width: 100%;
-        height: calc(100vh - vw(125px) - 80px);
+        height: calc(100vh - var(--header-height) - 80px);
         background-color: $sky;
         border: 1px solid transparentize($navy, 0.9);
         border-radius: 10px;
@@ -587,14 +588,14 @@ section.features {
     .features-content {
         position: relative;
         width: 33.33%;
-        padding-top: vwmin(100px);
-        padding-left: vwmin(140px);
-        padding-right: vwmin(40px);
+        padding-top: clampValues(30, 100, $sm, $xl);
+        padding-left: clampValues(50, 140, $sm, $xl);
+        padding-right: clampValues(20, 40, $sm, $xl);
 
         &::before {
             content: "";
             position: absolute;
-            left: vwmin(100px);
+            left: clampValues(30, 100, $sm, $xl);
             top: 0;
             width: 1px;
             height: 100%;
@@ -604,19 +605,19 @@ section.features {
         .progress {
             transform-origin: 0 0;
             position: absolute;
-            left: vwmin(100px);
-            top: vw(100px);
+            left: clampValues(30, 100, $sm, $xl);
+            top: clampValues(30, 100, $sm, $xl);
             width: 4px;
             height: 100px;
             background-color: $cyan;
         }
 
         .heading {
-            margin-bottom: vwmin(60px);
+            margin-bottom: clampValues(20, 60, $sm, $xl);
         }
 
         .benefit {
-            margin-bottom: vwmin(30px);
+            margin-bottom: clampValues(15, 30, $sm, $xl);
 
             h2 {
                 display: flex;
@@ -632,10 +633,10 @@ section.features {
             }
 
             ul {
-                margin: 0;
+                margin: 0 !important;
                 padding: 0;
                 list-style: none;
-                font-size: vwmin(22px);
+                font-size: clampValues(16, 22, $sm, $xl);
                 line-height: 1.2;
                 overflow: hidden;
             }
@@ -644,7 +645,7 @@ section.features {
                 display: flex;
                 align-items: flex-start;
                 gap: 20px;
-                padding-bottom: vwmin(30px);
+                padding-bottom: clampValues(10, 20, $sm, $xl);
 
                 &::before {
                     content: "";
@@ -658,7 +659,7 @@ section.features {
                 }
 
                 &:first-child {
-                    padding-top: 20px;
+                    padding-top: clampValues(10, 20, $sm, $xl);
                 }
 
                 &:last-child {
@@ -670,7 +671,7 @@ section.features {
 
     .features-media {
         width: 66.67%;
-        padding-top: vwmin(100px);
+        padding-top: clampValues(30, 100, $sm, $xl);
     }
 
     .media-wrap {
