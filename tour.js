@@ -208,10 +208,10 @@ export default function initTour(element) {
             duration: 1,
             ease: "power4.in",
         },
-        4.5
+        4.4
     );
 
-    timeline.addLabel("Exterior", 4.5);
+    timeline.addLabel("Exterior", 4.4);
 
     timeline.to(
         access,
