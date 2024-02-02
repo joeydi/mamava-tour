@@ -43,24 +43,7 @@ export default function initFeatures(element) {
     });
 
     const timeline = gsap.timeline({
-        scrollTrigger: {
-            // markers: true,
-            trigger: element,
-            start: "top top",
-            end: `+=${(panels.length - 1) * 100}%`,
-            pin: pin,
-            scrub: 1,
-            snap: {
-                snapTo: "labels",
-                duration: { min: 0.2, max: 0.5 },
-                delay: 0,
-            },
-            onEnter: () => {
-                lazyVideos.forEach((el) => {
-                    el.src = el.dataset.src;
-                });
-            },
-        },
+        paused: true,
     });
 
     timeline.set(
@@ -127,6 +110,37 @@ export default function initFeatures(element) {
             },
             i
         );
+    });
+
+    const snap = gsap.utils.snap(1 / (panels.length - 1));
+
+    ScrollTrigger.create({
+        // markers: true,
+        trigger: element,
+        start: "top top",
+        end: `+=${(panels.length - 1) * 100}%`,
+        pin: pin,
+        // scrub: 1,
+        // snap: {
+        //     snapTo: "labels",
+        //     duration: { min: 0.2, max: 0.5 },
+        //     delay: 0,
+        // },
+        onEnter: () => {
+            lazyVideos.forEach((el) => {
+                el.src = el.dataset.src;
+            });
+        },
+        onUpdate: (self) => {
+            const snappedProgress = snap(self.progress);
+            console.log(self.progress, snappedProgress);
+
+            gsap.to(timeline, {
+                progress: snappedProgress,
+                duration: 1,
+                ease: "expo.out",
+            });
+        },
     });
 
     // Add click handlers to scroll timeline from [data-scroll-target] to associated timeline label
