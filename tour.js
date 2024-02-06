@@ -90,7 +90,11 @@ export default function initTour(element) {
         const progress = timeline.progress();
         const direction = progress > previousProgress ? 1 : -1;
         const label = direction > 0 ? timeline.nextLabel(timeline.time() - 0.1) : timeline.previousLabel(timeline.time() + 0.1);
-        const formattedLabel = label.replace("1", "").replace("2", "");
+        const labelReplacements = ["Start", "End", "1", "2"];
+        const formattedLabel = labelReplacements.reduce(
+            (accumulator, currentValue) => accumulator.replace(currentValue, ""),
+            label
+        );
 
         if (formattedLabel !== previousLabel) {
             gsap.timeline()
@@ -143,7 +147,7 @@ export default function initTour(element) {
         },
     });
 
-    timeline.addLabel("Welcome", 0);
+    timeline.addLabel("Start", 0);
 
     timeline.fromTo(
         video,
@@ -349,7 +353,7 @@ export default function initTour(element) {
         25
     );
 
-    timeline.addLabel("The end.");
+    timeline.addLabel("End");
 
     const playToLabel = (label) => {
         const labelTime = timeline.labels[label];
