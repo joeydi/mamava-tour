@@ -12,14 +12,11 @@ export default function initTour(element) {
     const pin = element.querySelector(".pin");
     const videoDuration = 29.7;
     const videoScrollTriggerDuration = 2;
-    // const timeLabel = element.querySelector(".time");
-    // const timelineLabel = element.querySelector(".timeline");
     const navPrevious = element.querySelector(".nav .previous");
     const navNext = element.querySelector(".nav .next");
     const navLabel = element.querySelector(".nav .label");
     const intro = element.querySelector(".intro");
     const introButton = intro.querySelector("button");
-    // const introSplit = new SplitText(intro.querySelector("h2"), { type: "lines" });
     const exterior = element.querySelector(".exterior");
     const exteriorSplit = new SplitText(exterior.querySelector("h2"), { type: "lines" });
     const access = element.querySelector(".access");
@@ -30,10 +27,6 @@ export default function initTour(element) {
     const interior2Split = new SplitText(interior2.querySelector("h2"), { type: "lines" });
     const mobility = element.querySelector(".mobility");
     const mobilitySplit = new SplitText(mobility.querySelector("h2"), { type: "lines" });
-
-    // video.addEventListener("timeupdate", () => {
-    //     timeLabel.innerText = video.currentTime.toFixed(2);
-    // });
 
     gsap.set(intro, {
         opacity: 1,
@@ -134,7 +127,6 @@ export default function initTour(element) {
         paused: true,
         onUpdate: () => {
             updateNav();
-            // timelineLabel.innerText = timeline.time().toFixed(2);
 
             if (!timelineComplete && timeline.time() > 26) {
                 timelineComplete = true;

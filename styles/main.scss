@@ -409,26 +409,6 @@ section.tour {
         object-fit: cover;
     }
 
-    .time {
-        position: absolute;
-        z-index: 10;
-        top: 20px;
-        right: 20px;
-        font-family: monospace;
-        font-weight: 700;
-        color: #000;
-    }
-
-    .timeline {
-        position: absolute;
-        z-index: 10;
-        top: 40px;
-        right: 20px;
-        font-family: monospace;
-        font-weight: 700;
-        color: #000;
-    }
-
     .content {
         position: absolute;
         inset: 0;
@@ -441,7 +421,6 @@ section.tour {
         width: 40%;
         min-width: 340px;
         max-width: 440px;
-        // padding: clampValues(20, 30, $sm, $xl) clampValues(30, 40, $sm, $xl);
         padding: clampValues(20, 40, $sm, $xl) clampValues(30, 50, $sm, $xl);
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.35);
