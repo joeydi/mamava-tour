@@ -609,8 +609,8 @@ section.features {
                     width: 30px;
                     height: 30px;
                     margin-top: -2px;
-                    background: url("https://simple-creature-website-assets.s3.amazonaws.com/mamava/icon-checkmark.svg") 50% 50%
-                        no-repeat;
+                    background: url("https://simple-creature-website-assets.s3.amazonaws.com/mamava/flex-icon-checkmark.svg") 50%
+                        50% no-repeat;
                 }
 
                 &:first-child {
@@ -730,7 +730,7 @@ section.features {
 }
 
 section.specs {
-    background: $sky url("https://simple-creature-website-assets.s3.amazonaws.com/mamava/blueprint.png") 50% 50% no-repeat;
+    background: $sky url("https://simple-creature-website-assets.s3.amazonaws.com/mamava/flex-blueprint.png") 50% 50% no-repeat;
     background-size: cover;
 
     .card {
@@ -1011,8 +1011,8 @@ section.contact {
         border-radius: 6px;
         border: 1px solid transparentize($navy, 0.8);
         box-shadow: inset -2px -4px 4px rgba(0, 0, 0, 0.05);
-        background: $white url("https://simple-creature-website-assets.s3.amazonaws.com/mamava/caret.svg") calc(100% - 15px) 50%
-            no-repeat;
+        background: $white url("https://simple-creature-website-assets.s3.amazonaws.com/mamava/flex-caret.svg") calc(100% - 15px)
+            50% no-repeat;
         background-size: 10px auto;
         font-size: clampValues(16, 18, $sm, $xl);
         line-height: 30px;
