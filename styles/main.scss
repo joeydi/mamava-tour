@@ -344,9 +344,9 @@ section.hero {
         flex-direction: column;
         gap: clampValues(20, 30, $sm, $xl);
         width: 50%;
-        min-width: 360px;
+        min-width: 300px;
         max-width: 440px;
-        padding: clampValues(20, 40, $sm, $xl) clampValues(30, 50, $sm, $xl);
+        padding: clampValues(20, 40, $sm, $xl) clampValues(20, 50, $sm, $xl);
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.35);
         background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
@@ -359,7 +359,7 @@ section.hero {
             gap: 20px;
 
             img {
-                width: clampValues(70, 100, $sm, $xl);
+                width: clampValues(60, 100, $sm, $xl);
                 height: auto;
             }
 
@@ -383,6 +383,7 @@ section.hero {
         .btn-primary,
         .btn-link {
             width: 100%;
+            padding: 20px;
         }
     }
 }
@@ -707,7 +708,7 @@ section.features {
                 height: 100%;
                 display: block;
                 object-fit: cover;
-                background-color: darken($sky, 5%);
+                background: linear-gradient(to bottom, darken($sky, 5%), darken($sky, 1%));
             }
         }
     }
