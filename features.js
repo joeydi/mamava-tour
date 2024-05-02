@@ -26,8 +26,9 @@ export default function initFeatures(element) {
         end: "bottom bottom",
         onEnter: () => {
             lazyVideos.forEach((el) => {
-                if (!el.src) {
+                if (!el.src && el.offsetWidth > 0 && el.offsetHeight > 0) {
                     el.src = el.dataset.src;
+                    el.load();
                 }
             });
         },
